@@ -1,6 +1,22 @@
 import './Header.css';
 
-function Header() {
+function Header({
+    customRouter,
+}) {
+
+    function navigationHandler(e) {
+        e.preventDefault();
+
+        if (e.target.tagName !== 'A') {
+            return;
+        }
+
+        let url = new URL(e.target.href);
+
+        url = url.pathname;
+        customRouter(url);
+    }
+
     return (
         <>
             <header className="site-header">
@@ -23,19 +39,19 @@ function Header() {
 
             </header>
 
-            <nav className="mainav">
+            <nav className="mainav" onClick={navigationHandler}>
                 <div>
                     <a href="/">Home</a>
                     <a href="/wines">Shop</a>
-                    <a href="/wines">Blog</a>
+                    <a href="/blog">Blog</a>
                 </div>
                 <div className="guest">
-                    <a href="/">Login</a>
-                    <a href="/">Register</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
                 <div className="user">
                     <a href="/">Wellcome, [name]!</a>
-                    <a href="/">Logout</a>
+                    <a href="/logout">Logout</a>
                 </div>
             </nav>
 

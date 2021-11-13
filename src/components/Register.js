@@ -3,7 +3,6 @@ import './Register.css'
 function Register() {
     return (
         <>
-            <main>
             <h3>Register Page</h3>
             <section className="form-wrapper">
                 <section className="form-img">
@@ -23,7 +22,6 @@ function Register() {
                     </form>
                 </section>
             </section>
-            </main>
         </>
     )
 }
