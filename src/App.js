@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Blog from './components/Blog';
 import Catalog from './components/Catalog';
 import Details from './components/Details';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
     <div className="App">
       <Header customRouter={customRouter} />
       <main className="site-main">
-        {routes[path] || <h1>Not Found</h1>}
+        {routes[path] || <ErrorPage />}
       </main>
       <Footer />
     </div>
