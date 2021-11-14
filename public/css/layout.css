@@ -1,12 +1,13 @@
 @import "https://use.fontawesome.com/releases/v5.10.2/css/all.css";
 
 *, *::before, *::after{
-    box-sizing:border-box;
+    margin: 0; 
+    padding: 0; 
+    box-sizing: inherit;
 }
 
 html, body {
-    margin: 0; 
-    padding: 0; 
+    box-sizing: border-box;    
     font-size: 14px;
     line-height: 1.5em;
     color: #302f2f;
@@ -22,7 +23,7 @@ label, button {
 
 h1, h2, h3, h4, h5, h6{
     font-family: Georgia, "Times New Roman", Times, serif;
-    margin-bottom: 0; 
+    margin: 1em 0; 
     line-height: normal; 
     font-weight: normal; 
     text-transform: capitalize; 

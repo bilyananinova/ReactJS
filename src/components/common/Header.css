@@ -1,14 +1,12 @@
 .site-header {
     display: flex;
-    margin: 1em 15em;
+    margin: 1em auto;
     align-items: center;
-    justify-content: center;
     justify-content: space-between;
+    width: 70%;
 }
 
-.header-logo {
-    margin: 0; 
-    padding: 0; 
+.header-logo { 
     line-height: 1;
     text-align: left;
 }
@@ -76,9 +74,10 @@
 .mainav {
     background-color:#9D0552;
     border-radius: 0.8em;
-    margin: 0 15em;
+    margin: auto;
     display: flex;
     justify-content: space-between;
+    width: 70%;
 }
 
 .mainav a {
