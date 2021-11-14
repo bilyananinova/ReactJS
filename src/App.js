@@ -12,6 +12,7 @@ import Blog from './components/Blog';
 import Catalog from './components/Catalog';
 import Details from './components/Details';
 import ErrorPage from './components/ErrorPage';
+import Cart from './components/Cart';
 
 function App() {
 
