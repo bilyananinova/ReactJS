@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
 
+import './firebase/firebaseConfig';
+
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 
@@ -15,7 +17,6 @@ import ErrorPage from './components/ErrorPage';
 import Cart from './components/Cart';
 
 function App() {
-
   let [path, setPath] = React.useState('/');
 
   function customRouter(path) {

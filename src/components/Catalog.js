@@ -1,6 +1,23 @@
 import './Catalog.css';
 
+import React from 'react';
+
+import { getAllWines } from "../services/winesServices";
+import CatalogProductCart from "../components/catalog/CatalogProductCard";
+
 function Catalog() {
+    let [products, setProducts] = React.useState([]);
+
+    React.useEffect(() => {
+        getAllWines()
+            .then(wines => {
+
+                setProducts(wines)
+            })
+    }, [])
+
+    console.log(products);
+
     return (
         <>
             <h4>Our Wines</h4>
@@ -14,54 +31,11 @@ function Catalog() {
                     </ul>
                 </aside>
                 <section className="products-list">
-                    <section className="product-card">
-                        <div className="product-image">
-                            <img src="https://images.unsplash.com/photo-1597043851759-3b383a6d1c14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" />
-                        </div>
-                        <div className="product-details">
-                            <header className="product-header">
-                                <h5>Title</h5>
-                            </header>
-                            <span className="product-price">20.00$</span>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, temporibus assumenda provident suscipit quasi voluptate dolores eligendi placeat aliquam nostrum iste molestias nemo sint officia iusto ipsa modi tenetur. </p>
-                            <div className="product-action">
-                                <a className="details-btn" href="#"><i className="fas fa-wine-bottle"></i>details</a>
-                                <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
-                            </div>
-                        </div>
-                    </section>
-                    <section className="product-card">
-                        <div className="product-image">
-                            <img src="https://images.unsplash.com/photo-1553682544-4ccf2778c9a8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" />
-                        </div>
-                        <div className="product-details">
-                            <header className="product-header">
-                                <h5>Title</h5>
-                            </header>
-                            <span className="product-price">20.00$</span>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, temporibus assumenda provident suscipit quasi voluptate dolores eligendi placeat aliquam nostrum iste molestias nemo sint officia iusto ipsa modi tenetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, temporibus assumenda provident suscipit quasi voluptate dolores eligendi placeat aliquam nostrum iste molestias nemo sint officia iusto ipsa modi tenetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-                            <div className="product-action">
-                                <a className="details-btn" href="#"><i className="fas fa-wine-bottle"></i>details</a>
-                                <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
-                            </div>
-                        </div>
-                    </section>
-                    <section className="product-card">
-                        <div className="product-image">
-                            <img src="https://images.unsplash.com/photo-1554230561-31bdc707b537?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
-                        </div>
-                        <div className="product-details">
-                            <header className="product-header">
-                                <h5>Title</h5>
-                            </header>
-                            <span className="product-price">20.00$</span>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-                            <div className="product-action">
-                                <a className="details-btn" href="#"><i className="fas fa-wine-bottle"></i>details</a>
-                                <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
-                            </div>
-                        </div>
-                    </section>
+
+                    {products.map(wine =>
+                        <CatalogProductCart key={wine.id}>{wine}</CatalogProductCart>
+                    )}
+
                 </section>
             </section>
         </>
