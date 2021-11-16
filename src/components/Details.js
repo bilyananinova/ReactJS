@@ -1,19 +1,35 @@
-import './Details.css'
+import './Details.css';
 
-function Details() {
+import React from 'react';
+
+import { getOne } from '../services/winesServices';
+
+function Details({ id }) {
+    let [product, setProduct] = React.useState({});
+
+    React.useEffect(() => {
+
+        getOne(id)
+        .then(wine => {
+            setProduct(wine.data());
+        })
+        
+    }, [])
+
+    console.log(product);
     return (
         <>
             <section className="details-wrapper">
                 <section className="details-img">
-                    <img src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" />
+                    <img src={product.img} />
                 </section>
                 <section>
                     <div className="details">
                         <header>
-                            <h5>Title</h5>
+                            <h5>{product.title}</h5>
                         </header>
-                        <span className="details-price">20.00$</span>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, temporibus assumenda provident suscipit quasi voluptate dolores eligendi placeat aliquam nostrum iste molestias nemo sint officia iusto ipsa modi tenetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, temporibus assumenda provident suscipit quasi voluptate dolores eligendi placeat aliquam nostrum iste molestias nemo sint officia iusto ipsa modi tenetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
+                        <span className="details-price">{product.price}$</span>
+                        <p>{product.description}</p>
                         <div className="details-action">
                             <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
                         </div>
@@ -32,10 +48,10 @@ function Details() {
             <form className="commentForm">
                 <h5>Add a review</h5>
                 <label htmlFor="author">From:</label>
-                <input type="text" name="author" id="author" value="" />
+                <input type="text" name="author" id="author" defaultValue="" />
                 <label htmlFor="content">Comment:</label>
                 <textarea name="content" id="content" placeholder="Leave a comment..." cols="5" rows="2"></textarea>
-                <input type="submit" value="Create comment" />
+                <input type="submit" defaultValue="Create comment" />
             </form>
         </>
     )

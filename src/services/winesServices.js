@@ -1,12 +1,12 @@
-import { getDocs, collection , getFirestore } from "firebase/firestore";
+import { getDocs, collection, getFirestore, doc, getDoc } from "firebase/firestore";
 
 let db = getFirestore();
-let winesRef = collection(db, 'wines');
 
 function getAllWines() {
-    
+    let winesRef = collection(db, 'wines');
+
     return getDocs(winesRef)
-    .then((snapshot) => {
+        .then((snapshot) => {
             let wines = [];
             snapshot.docs.forEach((doc) => {
                 wines.push({ ...doc.data(), id: doc.id })
@@ -20,6 +20,12 @@ function getAllWines() {
 
 }
 
+function getOne(id) {
+    let wineRef = doc(db, 'wines', id);
+    return getDoc(wineRef);
+}
+
 export {
     getAllWines,
+    getOne
 }

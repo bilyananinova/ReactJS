@@ -5,7 +5,7 @@ import React from 'react';
 import { getAllWines } from "../services/winesServices";
 import CatalogProductCart from "../components/catalog/CatalogProductCard";
 
-function Catalog() {
+function Catalog({customRouter}) {
     let [products, setProducts] = React.useState([]);
 
     React.useEffect(() => {
@@ -32,8 +32,8 @@ function Catalog() {
                 </aside>
                 <section className="products-list">
 
-                    {products.map(wine =>
-                        <CatalogProductCart key={wine.id}>{wine}</CatalogProductCart>
+                    {products.map(w =>
+                        <CatalogProductCart key={w.id} customRouter={customRouter} wine={w} ></CatalogProductCart>
                     )}
 
                 </section>

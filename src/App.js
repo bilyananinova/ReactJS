@@ -23,20 +23,30 @@ function App() {
     setPath(path)
   }
 
-  let routes = {
-    '/': <Home />,
-    '/blog': <Blog />,
-    '/wines': <Catalog />,
-    '/login': <Login />,
-    '/register': <Register />,
+  function router(path) {
+    let [empty, pathname, id] = path.split('/');
+
+    pathname = `/${pathname}`;
+
+    let routes = {
+      '/': <Home />,
+      '/blog': <Blog />,
+      '/wines': <Catalog customRouter={customRouter} />,
+      '/login': <Login />,
+      '/register': <Register />,
+      '/details': <Details id={id} />
+    }
+
+    return routes[pathname]
   }
+
 
 
   return (
     <div className="App">
       <Header customRouter={customRouter} />
       <main className="site-main">
-        {routes[path] || <ErrorPage />}
+        {router(path) || <ErrorPage />}
       </main>
       <Footer />
     </div>

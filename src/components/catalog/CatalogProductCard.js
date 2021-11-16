@@ -1,21 +1,24 @@
+function CatalogProductCart({wine, customRouter}) {
+
+    function detailsClickHandler(e) {
+        e.preventDefault();
+        customRouter(`/details/${wine.id}`)
+    };
 
 
-function CatalogProductCart(props) {
-    let description = props.children.description.split(' ').slice(0, 20).join(' ')
-    
     return (
         <section className="product-card">
             <div className="product-image">
-                <img src={props.children.img} />
+                <img src={wine.img} />
             </div>
             <div className="product-details">
                 <header className="product-header">
-                    <h5>{props.children.title}</h5>
+                    <h5>{wine.title}</h5>
                 </header>
-                <span className="product-price">{props.children.price}$</span>
-                <p>{description}...</p>
+                <span className="product-price">{wine.price}$</span>
+                <p>{wine.description.substring(0, 150)}...</p>
                 <div className="product-action">
-                    <a className="details-btn" href="#"><i className="fas fa-wine-bottle"></i>details</a>
+                    <a className="details-btn" href={`/details/${wine.id}`} onClick={detailsClickHandler}><i className="fas fa-wine-bottle"></i>details</a>
                     <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
                 </div>
             </div>
