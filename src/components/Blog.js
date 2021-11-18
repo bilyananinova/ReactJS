@@ -1,7 +1,5 @@
 import './Blog.css';
-
 import React from 'react';
-
 import { getAllArticles } from "../services/blogServices";
 import BlogArticleCard from '../components/blog/BlogArticleCard';
 
@@ -13,13 +11,11 @@ function Blog({customRouter}) {
             .then(articles => {
                 setArticles(articles);
             })
-    }, [])
-
-    console.log(articles);
+    }, []);
 
     return (
         <>
-            <h4>From the blog</h4>
+            <h3>From the blog</h3>
             <section className="blog-wrapper">
                 <div className="blog">
 

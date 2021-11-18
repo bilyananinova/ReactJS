@@ -1,11 +1,14 @@
 import './Details.css';
-
 import React from 'react';
-
+import { Link } from "react-router-dom";
 import { getOne } from '../services/winesServices';
 
-function Details({ id }) {
+function Details({
+    match
+}) {
     let [product, setProduct] = React.useState({});
+
+    let id = match.params.wineId;
 
     React.useEffect(() => {
 
@@ -13,8 +16,8 @@ function Details({ id }) {
         .then(wine => {
             setProduct(wine.data());
         })
-        
-    }, [])
+
+    }, []);
 
     console.log(product);
     return (
@@ -31,7 +34,7 @@ function Details({ id }) {
                         <span className="details-price">{product.price}$</span>
                         <p>{product.description}</p>
                         <div className="details-action">
-                            <a className="add-btn" href="#"><i className="fas fa-shopping-cart"></i>buy</a>
+                            <Link to="#" className="add-btn"><i className="fas fa-shopping-cart"></i>buy</Link>
                         </div>
                     </div>
                 </section>

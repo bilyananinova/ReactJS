@@ -1,18 +1,14 @@
 import './BlogArticleCard.css';
+import { Link } from "react-router-dom";
 
-function BlogArticleCard({article, customRouter}) {
-
-    function detailsClickHandler(e) {
-        e.preventDefault();
-        customRouter(`/article/${article.id}`)
-    };
+function BlogArticleCard({article}) {
 
     return (
         <article className="blog-article">
             <div className="blog-article-image">
-                <a href="#">
+                <Link to="{`/articles/${article.id}`}">
                     <img alt="" src={article.img} />
-                </a>
+                </Link>
             </div>
             <header className="blog-article-header">
                 <h6 className="blog-article-title">
@@ -25,7 +21,7 @@ function BlogArticleCard({article, customRouter}) {
                 </p>
             </div>
             <footer className="blog-article-footer">
-                <a className="read-more" href={`/article/${article.id}`} onClick={detailsClickHandler}>read more</a>
+                <Link to={`/articles/${article.id}`} className="read-more">read more</Link>
             </footer>
         </article>
 

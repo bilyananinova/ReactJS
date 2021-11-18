@@ -1,11 +1,13 @@
 import './BlogArticle.css'
-
 import React from 'react';
-
 import { getOneArticle } from "../services/blogServices";
 
-function BlogArticle({ id }) {
+function BlogArticle({
+    match
+}) {
     let [article, setArticle] = React.useState([]);
+
+    let id = match.params.articleId;
 
     React.useEffect(() => {
         getOneArticle(id)
@@ -14,11 +16,10 @@ function BlogArticle({ id }) {
         })
     }, []);
 
-    console.log(article);
     return (
         <article class="entry">
             <header class="entry-title">
-                <h2>{article.title}</h2>
+                <h3>{article.title}</h3>
             </header>
             <section class="entry-media">
                 <img src={article.img} />

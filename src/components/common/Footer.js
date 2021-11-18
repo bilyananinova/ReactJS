@@ -11,7 +11,7 @@ function Footer() {
                             <li>
                                 <address>
                                     Street Name &amp; Number, Town, Postcode/Zip
-                            </address>
+                                </address>
                             </li>
                             <li>+359 888 000 000</li>
                             <li>email@mail.bg</li>
@@ -40,7 +40,7 @@ function Footer() {
                 </section>
             </footer>
             <section className="copyright">
-                <p>Copyright &copy; 2021 - All Rights Reserved - <a href="/">Winery ReactJS</a></p>
+                <p>Copyright &copy; 2021 - All Rights Reserved - <a href="/">Wine Store ReactJS</a></p>
             </section>
         </>
     )

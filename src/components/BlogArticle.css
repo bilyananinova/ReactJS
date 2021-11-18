@@ -3,6 +3,10 @@
     margin: 3em auto;
 }
 
+.entry-title {
+    margin-bottom: 1em;
+}
+
 .entry-media {
     position: relative;
     width: 35%;
