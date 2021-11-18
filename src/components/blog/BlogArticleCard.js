@@ -1,31 +1,35 @@
+import './BlogArticleCard.css';
 
+function BlogArticleCard({article, customRouter}) {
 
-function BlogArticleCart(props) {
-
-    let content = props.children.content.split(' ').slice(0, 30).join(' ');
+    function detailsClickHandler(e) {
+        e.preventDefault();
+        customRouter(`/article/${article.id}`)
+    };
 
     return (
         <article className="blog-article">
-            <a href="#">
-                <div className="blog-article-image">
-                    <img alt="" src={props.children.img} />
-                </div>
-            </a>
-            <div className="blog-article-body">
-                <h6 className="blog-article-title">
-                    <a href="#">{props.children.title}</a>
-                </h6>
-                <p>
-                    {content}...    
-                <span>
-                        <a className="read-more" href="#">read more >> </a>
-                    </span></p>
-
-
+            <div className="blog-article-image">
+                <a href="#">
+                    <img alt="" src={article.img} />
+                </a>
             </div>
+            <header className="blog-article-header">
+                <h6 className="blog-article-title">
+                    <a href="#">{article.title}</a>
+                </h6>
+            </header>
+            <div className="blog-article-body">
+                <p>
+                    {article.content.substring(0, 150)}...
+                </p>
+            </div>
+            <footer className="blog-article-footer">
+                <a className="read-more" href={`/article/${article.id}`} onClick={detailsClickHandler}>read more</a>
+            </footer>
         </article>
 
     );
 }
 
-export default BlogArticleCart;
+export default BlogArticleCard;

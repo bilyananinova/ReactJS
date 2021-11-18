@@ -11,6 +11,7 @@ import Register from './components/Register';
 
 import Home from './components/Home';
 import Blog from './components/Blog';
+import BlogArticle from './components/BlogArticle';
 import Catalog from './components/Catalog';
 import Details from './components/Details';
 import ErrorPage from './components/ErrorPage';
@@ -27,10 +28,11 @@ function App() {
     let [empty, pathname, id] = path.split('/');
 
     pathname = `/${pathname}`;
-
+    
     let routes = {
       '/': <Home />,
-      '/blog': <Blog />,
+      '/blog': <Blog customRouter={customRouter} />,
+      '/article': <BlogArticle id={id} />,
       '/wines': <Catalog customRouter={customRouter} />,
       '/login': <Login />,
       '/register': <Register />,

@@ -5,7 +5,7 @@ import React from 'react';
 import { getAllArticles } from "../services/blogServices";
 import BlogArticleCard from '../components/blog/BlogArticleCard';
 
-function Blog() {
+function Blog({customRouter}) {
     let [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
@@ -23,8 +23,8 @@ function Blog() {
             <section className="blog-wrapper">
                 <div className="blog">
 
-                    {articles.map(article =>
-                        <BlogArticleCard key={article.id}>{article}</BlogArticleCard>
+                    {articles.map(a =>
+                        <BlogArticleCard key={a.id} article={a} customRouter={customRouter}  />
                     )}
 
                 </div>
