@@ -6,10 +6,8 @@ import './firebase/firebaseConfig';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
-
 import Login from './components/login/Login';
 import Register from './components/register/Register';
-
 import Home from './components/home/Home';
 import Blog from './components/blog/Blog';
 import BlogArticle from './components/blog/BlogArticle';
@@ -22,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+
       <main className="site-main">
         <Switch>
           <Route path="/" exact component={Home} />
@@ -34,6 +33,7 @@ function App() {
           <Route component={ErrorPage} />
         </Switch>
       </main>
+
       <Footer />
     </div>
   );

@@ -5,11 +5,16 @@
     margin: 3em auto 5em;
 }
 
+.form-section {
+    flex: 0 0  50%;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin: 5em;
+    width: 50%;
+    margin: 3em auto;
 }
 
 .login-form label {
@@ -17,8 +22,12 @@
     margin: 1.2em 0 0.5em;
 }
 
+.login-form p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .login-button {
-    margin: 2em 0;
+    margin: 2em 0 0.5em;
     padding: 0.5em;
     font-size: 1.1em;
     color: #ffffff;
@@ -35,7 +44,6 @@
 .login-form input {
     border: none;
     border: 1px solid #9D0552;
-    width: 20em;
     border-radius: 0.5em;
     padding: 1em;
 }

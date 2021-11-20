@@ -7,7 +7,7 @@ function Footer() {
             <footer className="site-footer">
                 <section className="footer-wrapper">
                     <section className="contacts">
-                        <h6>Contacts</h6>
+                        <h6 className="footer-title">Contacts</h6>
                         <ul>
                             <li>
                                 <address>
@@ -20,7 +20,7 @@ function Footer() {
                     </section>
 
                     <section className="links">
-                        <h6>Links</h6>
+                        <h6 className="footer-title">Links</h6>
                         <ul>
                             <li><Link to="/">Help & FAQs</Link></li>
                             <li><Link to="/">Terms and Condition</Link></li>
@@ -31,7 +31,7 @@ function Footer() {
                     </section>
 
                     <section className="social-media">
-                        <h6>Social media</h6>
+                        <h6 className="footer-title">Social media</h6>
                         <ul>
                             <li><a href="/"><i className="fab fa-facebook-square"></i></a></li>
                             <li><a href="/"><i className="fab fa-twitter-square"></i></a></li>

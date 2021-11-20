@@ -1,6 +1,5 @@
-import { getDocs, collection, getFirestore, doc, getDoc } from "firebase/firestore";
-
-let db = getFirestore();
+import { getDocs, collection, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 function getAllWines() {
     let winesRef = collection(db, 'wines');
