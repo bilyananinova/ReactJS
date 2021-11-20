@@ -1,4 +1,5 @@
 import './Footer.css'
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -21,11 +22,11 @@ function Footer() {
                     <section className="links">
                         <h6>Links</h6>
                         <ul>
-                            <li><a href="/">Help & FAQs</a></li>
-                            <li><a href="/">Terms and Condition</a></li>
-                            <li><a href="/">Privacy Policy</a></li>
-                            <li><a href="/">Delivery</a></li>
-                            <li><a href="/">Refer a Friend</a></li>
+                            <li><Link to="/">Help & FAQs</Link></li>
+                            <li><Link to="/">Terms and Condition</Link></li>
+                            <li><Link to="/">Privacy Policy</Link></li>
+                            <li><Link to="/">Delivery</Link></li>
+                            <li><Link to="/">Refer a Friend</Link></li>
                         </ul>
                     </section>
 
@@ -40,7 +41,7 @@ function Footer() {
                 </section>
             </footer>
             <section className="copyright">
-                <p>Copyright &copy; 2021 - All Rights Reserved - <a href="/">Wine Store ReactJS</a></p>
+                <p>Copyright &copy; 2021 - All Rights Reserved - <Link to="/">Wine Store ReactJS</Link></p>
             </section>
         </>
     )

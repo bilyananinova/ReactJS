@@ -29,7 +29,7 @@ function Header() {
             <nav className="mainav">
                 <div>
                     <Link to="/">Home</Link>
-                    <Link to="/wines">Shop</Link>
+                    <Link to="/wine-catalog">Shop</Link>
                     <Link to="/articles">Blog</Link>
                 </div>
                 <div className="guest">
@@ -50,8 +50,8 @@ export default Header;
 
 
 <li className="cart">
-    <a href="#">
+    <Link to="#">
         <i class="icon-cart-thick"></i>
         <span class="cart-count badge-circle">1</span>
-    </a>
+    </Link>
 </li>

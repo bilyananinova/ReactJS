@@ -21,10 +21,8 @@
 
 .products-aside li {
     margin: 0.5em auto;
-}
-
-.products-aside a {
     color: #9D0552;
+    cursor: pointer;
 }
 
 .products-list {

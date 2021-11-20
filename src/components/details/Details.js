@@ -1,7 +1,7 @@
 import './Details.css';
 import React from 'react';
 import { Link } from "react-router-dom";
-import { getOne } from '../services/winesServices';
+import { getOne } from '../../services/winesServices';
 
 function Details({
     match
@@ -13,18 +13,18 @@ function Details({
     React.useEffect(() => {
 
         getOne(id)
-        .then(wine => {
-            setProduct(wine.data());
-        })
+            .then(wine => {
+                setProduct(wine.data());
+            })
 
-    }, []);
+    }, [id]);
 
     console.log(product);
     return (
         <>
             <section className="details-wrapper">
                 <section className="details-img">
-                    <img src={product.img} />
+                    <img src={product.img} alt='' />
                 </section>
                 <section>
                     <div className="details">

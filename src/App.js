@@ -7,16 +7,16 @@ import './firebase/firebaseConfig';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
 
-import Home from './components/Home';
-import Blog from './components/Blog';
-import BlogArticle from './components/BlogArticle';
-import Catalog from './components/Catalog';
-import Details from './components/Details';
-import ErrorPage from './components/ErrorPage';
-import Cart from './components/Cart';
+import Home from './components/home/Home';
+import Blog from './components/blog/Blog';
+import BlogArticle from './components/blog/BlogArticle';
+import Catalog from './components/catalog/Catalog';
+import Details from './components/details/Details';
+import ErrorPage from './components/error/ErrorPage';
+import Cart from './components/cart/Cart';
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/articles" exact component={Blog} />
           <Route path="/articles/:articleId" component={BlogArticle} />
-          <Route path="/wines" exact component={Catalog} />
-          <Route path="/wines/details/:wineId" component={Details} />
+          <Route path="/wine-catalog" exact component={Catalog} />
+          <Route path="/wine-catalog/details/:wineId" component={Details} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route component={ErrorPage} />

@@ -6,7 +6,7 @@ function CatalogProductCart({ wine }) {
     return (
         <section className="product-card">
             <div className="product-image">
-                <img src={wine.img} />
+                <img src={wine.img} alt= "" />
             </div>
             <div className="product-details">
 
@@ -19,7 +19,7 @@ function CatalogProductCart({ wine }) {
 
                 <div className="product-action">
                     <Link
-                        to={`/wines/details/${wine.id}`}
+                        to={`/wine-catalog/details/${wine.id}`}
                         className="details-btn">
                         <i className="fas fa-wine-bottle"></i>
                         details

@@ -1,6 +1,6 @@
 import './BlogArticle.css'
 import React from 'react';
-import { getOneArticle } from "../services/blogServices";
+import { getOneArticle } from "../../services/blogServices";
 
 function BlogArticle({
     match
@@ -11,20 +11,20 @@ function BlogArticle({
 
     React.useEffect(() => {
         getOneArticle(id)
-        .then(article => {
-            setArticle(article.data())
-        })
-    }, []);
+            .then(article => {
+                setArticle(article.data())
+            })
+    }, [id]);
 
     return (
-        <article class="entry">
-            <header class="entry-title">
+        <article className="blog-article">
+            <header className="blog-article-title">
                 <h3>{article.title}</h3>
             </header>
-            <section class="entry-media">
-                <img src={article.img} />
+            <section className="blog-article-media">
+                <img src={article.img} alt="" />
             </section>
-            <section class="entry-content">
+            <section className="blog-article-content">
                 <p>{article.content}</p>
             </section>
         </article>

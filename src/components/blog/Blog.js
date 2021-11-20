@@ -1,7 +1,7 @@
 import './Blog.css';
 import React from 'react';
-import { getAllArticles } from "../services/blogServices";
-import BlogArticleCard from '../components/blog/BlogArticleCard';
+import { getAllArticles } from "../../services/blogServices";
+import BlogArticleCard from './BlogArticleCard';
 
 function Blog({customRouter}) {
     let [articles, setArticles] = React.useState([]);
