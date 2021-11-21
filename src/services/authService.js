@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
 
 function register(name, email, password, rePassword) {
@@ -52,8 +52,15 @@ function logout() {
     signOut(auth)
 }
 
+function getUser(userId) {
+    let userRef = doc(db, "users", userId);
+    let user = getDoc(userRef);
+    return user
+}
+
 export {
     register,
     login,
-    logout
+    logout,
+    getUser
 }

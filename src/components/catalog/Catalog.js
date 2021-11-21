@@ -3,7 +3,8 @@ import React from 'react';
 import { getAllWines } from "../../services/winesServices";
 import CatalogProductCart from "./CatalogProductCard";
 
-function Catalog() {
+function Catalog({ authInfo }) {
+    
     let [products, setProducts] = React.useState([]);
     let [type, setType] = React.useState('')
 
@@ -39,6 +40,7 @@ function Catalog() {
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
+                                        authInfo={authInfo} 
                                         wine={w} >
                                     </CatalogProductCart>
                                 )
@@ -48,6 +50,7 @@ function Catalog() {
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
+                                        authInfo={authInfo} 
                                         wine={w} >
                                     </CatalogProductCart>
                                 )

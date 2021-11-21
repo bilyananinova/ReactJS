@@ -16,12 +16,15 @@ function Header({ authInfo }) {
                     <ul className="header-contacts">
                         <li><strong>Phone:</strong>+359 888 000 000</li>
                         <li><strong>Email:</strong>email@mail.bg</li>
-                        <li className="cart">
-                            <Link to="#">
-                                <i className="fas fa-shopping-bag"></i>
-                                <span className="cart-count">0</span>
-                            </Link>
-                        </li>
+                        {authInfo.isAuthenticated
+                            ? <li className="cart">
+                                <Link to="#">
+                                    <i className="fas fa-shopping-bag"></i>
+                                    <span className="cart-count">0</span>
+                                </Link>
+                            </li>
+                            : ""
+                        }
                     </ul>
                 </section>
 
@@ -35,7 +38,7 @@ function Header({ authInfo }) {
                 </div>
                 {authInfo.isAuthenticated
                     ? <div className="user">
-                        <Link to="#">Wellcome,  {authInfo.email} !</Link>
+                        <Link to="#">Wellcome,  {authInfo.name} !</Link>
                         <Link to="/logout" >Logout</Link>
                     </div>
                     : <div className="guest">

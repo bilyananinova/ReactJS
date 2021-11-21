@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { auth } from './firebase/firebaseConfig';
-import { logout } from './services/authService';
+import { logout, getUser } from './services/authService';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -21,14 +21,22 @@ function App() {
   let [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
-    auth.onAuthStateChanged(setUser);
+    auth.onAuthStateChanged(user => {
+      if (user != null) {
+        getUser(user.uid).then(user => {
+          setUser(user.data())
+        })
+      }
+    });
   }, []);
 
   let authInfo = {
     isAuthenticated: Boolean(user),
-    email: user?.email
+    email: user?.email,
+    name: user?.name,
+    cart: user?.cart
   }
-
+  
   return (
     <div className="App">
       <Header authInfo={authInfo} />
@@ -38,8 +46,8 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/articles" exact component={Blog} />
           <Route path="/articles/:articleId" component={BlogArticle} />
-          <Route path="/wine-catalog" exact component={Catalog} />
-          <Route path="/wine-catalog/details/:wineId" component={Details} />
+          <Route path="/wine-catalog" exact render={() => <Catalog authInfo={authInfo} />} />
+          <Route path="/wine-catalog/details/:wineId" render={(props) => <Details authInfo={authInfo} {...props} />} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/logout" render={() => {

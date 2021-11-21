@@ -16,6 +16,7 @@ function Login() {
        login(email, password)
         .then(user => {
             setUser(user);
+            e.target.reset();
             history.push('/');
         })
     }
