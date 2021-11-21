@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
 
@@ -48,7 +48,12 @@ function login(email, password) {
         })
 }
 
+function logout() {
+    signOut(auth)
+}
+
 export {
     register,
-    login
+    login,
+    logout
 }

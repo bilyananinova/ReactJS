@@ -1,8 +1,9 @@
 import './App.css';
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import './firebase/firebaseConfig';
+import { auth } from './firebase/firebaseConfig';
+import { logout } from './services/authService';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -17,9 +18,20 @@ import ErrorPage from './components/error/ErrorPage';
 import Cart from './components/cart/Cart';
 
 function App() {
+  let [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    auth.onAuthStateChanged(setUser);
+  }, []);
+
+  let authInfo = {
+    isAuthenticated: Boolean(user),
+    email: user?.email
+  }
+
   return (
     <div className="App">
-      <Header />
+      <Header authInfo={authInfo} />
 
       <main className="site-main">
         <Switch>
@@ -30,6 +42,10 @@ function App() {
           <Route path="/wine-catalog/details/:wineId" component={Details} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/logout" render={() => {
+            logout(auth);
+            return <Redirect to="/" />
+          }} />
           <Route component={ErrorPage} />
         </Switch>
       </main>

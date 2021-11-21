@@ -10,12 +10,11 @@ function Register() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        let name = e.target.name.value;
         let email = e.target.email.value;
         let password = e.target.password.value;
         let rePassword = e.target.rePassword.value;
 
-        register(name, email, password, rePassword)
+        register(email, password, rePassword)
             .then(user => {
                 setUser(user);
                 history.push('/');
@@ -30,8 +29,6 @@ function Register() {
             <section className="form-wrapper">
                 <section className="form-section">
                     <form className="register-form" onSubmit={handleSubmit}>
-                        <label htmlFor="register-name">Name <span className="required">*</span></label>
-                        <input type="text" className="form-input" id="register-name" name="name" placeholder="Ivan Ivanov" required />
                         <label htmlFor="register-email">Email address<span className="required">*</span></label>
                         <input type="email" className="form-input" id="register-email" name="email" placeholder="ivan@mail.bg" required />
                         <label htmlFor="register-password">Password <span className="required">*</span></label>

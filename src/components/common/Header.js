@@ -1,7 +1,8 @@
 import './Header.css';
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ authInfo }) {
+
     return (
         <>
             <header className="site-header">
@@ -32,14 +33,17 @@ function Header() {
                     <Link to="/wine-catalog">Shop</Link>
                     <Link to="/articles">Blog</Link>
                 </div>
-                <div className="guest">
-                    <Link to="/login">Login</Link>
-                    <Link to="/register">Register</Link>
-                </div>
-                <div className="user">
-                    <Link to="/">Wellcome, [name]!</Link>
-                    <Link to="/logout">Logout</Link>
-                </div>
+                {authInfo.isAuthenticated
+                    ? <div className="user">
+                        <Link to="#">Wellcome,  {authInfo.email} !</Link>
+                        <Link to="/logout" >Logout</Link>
+                    </div>
+                    : <div className="guest">
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Register</Link>
+                    </div>
+                }
+
             </nav>
 
         </>
@@ -47,11 +51,3 @@ function Header() {
 }
 
 export default Header;
-
-
-<li className="cart">
-    <Link to="#">
-        <i class="icon-cart-thick"></i>
-        <span class="cart-count badge-circle">1</span>
-    </Link>
-</li>
