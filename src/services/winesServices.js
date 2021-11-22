@@ -1,8 +1,9 @@
-import { getDocs, collection, doc, getDoc } from "firebase/firestore";
+import { getDocs, collection, doc, getDoc, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
+let winesRef = collection(db, 'wines');
+
 function getAllWines() {
-    let winesRef = collection(db, 'wines');
 
     return getDocs(winesRef)
         .then((snapshot) => {
@@ -24,7 +25,15 @@ function getOne(id) {
     return getDoc(wineRef);
 }
 
+function createProduct(title, description, price, type, image, createdAt) {
+    return addDoc(winesRef, {title, description, price, type, image, createdAt})
+    .then(wine => {
+        return wine
+    })
+}
+
 export {
     getAllWines,
-    getOne
+    getOne,
+    createProduct
 }

@@ -6,7 +6,7 @@ function CatalogProductCart({ authInfo, wine }) {
     return (
         <section className="product-card">
             <div className="product-image">
-                <img src={wine.img} alt="" />
+                <img src={wine.image} alt="" />
             </div>
             <div className="product-details">
 
