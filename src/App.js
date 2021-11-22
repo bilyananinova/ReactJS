@@ -12,6 +12,7 @@ import Register from './components/register/Register';
 import Home from './components/home/Home';
 import Blog from './components/blog/Blog';
 import BlogArticle from './components/blog/BlogArticle';
+import BlogArticleCreate from './components/blog/BlogArticleCreate';
 import Catalog from './components/catalog/Catalog';
 import Details from './components/details/Details';
 import ErrorPage from './components/error/ErrorPage';
@@ -36,7 +37,7 @@ function App() {
     name: user?.name,
     cart: user?.cart
   }
-  
+
   return (
     <div className="App">
       <Header authInfo={authInfo} />
@@ -45,6 +46,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/articles" exact component={Blog} />
+          <Route path="/articles/create" component={BlogArticleCreate} />
           <Route path="/articles/:articleId" component={BlogArticle} />
           <Route path="/wine-catalog" exact render={() => <Catalog authInfo={authInfo} />} />
           <Route path="/wine-catalog/details/:wineId" render={(props) => <Details authInfo={authInfo} {...props} />} />

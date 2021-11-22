@@ -1,15 +1,23 @@
 .error-wrapper {
-    box-shadow: 0px 5px 10px 1px #000000;
-    width: 60%;
-    margin: 3em auto;
     border-radius: 0.3em;
     text-transform: uppercase;
     background: linear-gradient(
-        rgba(0, 0, 0, 0.05), 
+        rgba(0, 0, 0, 0.3), 
         rgba(0, 0, 0, 0.5)
       ), url('https://images.unsplash.com/photo-1601502444609-14fa1cb181fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') no-repeat center center;
-    text-align: left;
-    padding: 3em;
+    background-size: cover;
+    position: relative;
+    padding: 2em;
+}
+
+.error-wrapper div::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    transform: translate(-50%, -50%);
 }
 
 .error-heading,
@@ -17,11 +25,13 @@
 .error-status {
     color: #ffffff;
     text-shadow: 2px 2px 2px #000000;
+    text-align: center;
 }
 
 .error-content {
     font-size: 1.3em;
     margin-bottom: 2em;
+    padding: 2em;
 }
 
 .error-status {
@@ -33,6 +43,7 @@
     border-radius: 0.5em;
     color: #000000;
     background-color: #ffffff;
+    margin: 2em;
 }
 
 .error-link:hover {

@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 
 function Header({ authInfo }) {
 
+    let userNav = <div className="user">
+        <Link to="/">Welcome, {authInfo.name} !</Link>
+        <Link to="/wine-catalog/create">Create product</Link>
+        <Link to="/articles/create">Create article</Link>
+        <Link to="/logout" >Logout</Link>
+    </div>
+
+    let guestNav = <div className="guest">
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
+    </div>
+
     return (
         <>
             <header className="site-header">
@@ -37,14 +49,8 @@ function Header({ authInfo }) {
                     <Link to="/articles">Blog</Link>
                 </div>
                 {authInfo.isAuthenticated
-                    ? <div className="user">
-                        <Link to="#">Wellcome,  {authInfo.name} !</Link>
-                        <Link to="/logout" >Logout</Link>
-                    </div>
-                    : <div className="guest">
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
-                    </div>
+                    ? userNav
+                    : guestNav
                 }
 
             </nav>

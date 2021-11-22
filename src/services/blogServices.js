@@ -1,12 +1,12 @@
-import { getDocs, collection , getFirestore, doc, getDoc } from "firebase/firestore";
+import { getDocs, collection, getFirestore, doc, getDoc, addDoc } from "firebase/firestore";
 
 let db = getFirestore();
+let articlesRef = collection(db, 'articles');
 
 function getAllArticles() {
-    let articlesRef = collection(db, 'articles');
-    
+
     return getDocs(articlesRef)
-    .then((snapshot) => {
+        .then((snapshot) => {
             let articles = [];
             snapshot.docs.forEach((doc) => {
                 articles.push({ ...doc.data(), id: doc.id })
@@ -25,7 +25,15 @@ function getOneArticle(id) {
     return getDoc(articleRef);
 }
 
+function createArticle(title, content, image, date) {
+    return addDoc(articlesRef, { title, content, image, date })
+        .then(article => {
+            return article;
+        })
+}
+
 export {
     getAllArticles,
-    getOneArticle
+    getOneArticle,
+    createArticle
 }

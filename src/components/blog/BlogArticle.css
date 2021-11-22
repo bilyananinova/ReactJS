@@ -14,7 +14,7 @@
     float: left;
     border-radius: 0.5em;
     overflow: hidden;
-    margin: 0 1em;
+    margin: 2em;
 }
 
 .blog-article-media::after,
@@ -48,6 +48,8 @@
 
 .blog-article-content p {
     text-align: justify;
+    background-color: #eef2f5;
+    padding: 2em;
 }
 
 .site-footer {

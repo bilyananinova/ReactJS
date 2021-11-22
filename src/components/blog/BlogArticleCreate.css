@@ -1,0 +1,53 @@
+.create-article{
+    background-color:  #eef2f5;
+    box-shadow: 0px -1px 37px 0px #9d0551be;
+    width: 40%;
+}
+
+.create-article-section {
+    margin: 2em auto;
+}
+
+.create-article-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 2em;
+}
+
+.create-article-form label {
+    padding: 1em 0 0.3em;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.create-article-form input,
+.create-article-form textarea {
+    border: none;
+    border: 1px solid #9D0552;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+
+.create-article-form input:focus,
+.create-article-form input:hover,
+.create-article-form textarea:focus,
+.create-article-form textarea:hover {
+    box-shadow: 0px 0px 5px 1px #9d0551b4;
+    outline: none;
+}
+
+.create-article-button {
+    margin: 2em 0 0.5em;
+    padding: 0.5em;
+    font-size: 1.1em;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5em;
+    background-color: #9D0552;
+}
+
+.create-article-button:hover,
+.create-article-button:focus {
+    cursor: pointer;
+}
