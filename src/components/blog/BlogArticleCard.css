@@ -1,6 +1,7 @@
 .blog-article-card {
     border-radius: 0.5em;
-    background-color: #eef2f5;
+    background-color: #ffffff;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.9);
     width: 18em;
     flex: 0 0 30%;
     margin-bottom: 3em;

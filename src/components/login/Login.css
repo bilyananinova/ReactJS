@@ -6,7 +6,8 @@
 }
 
 .form-section {
-    flex: 0 0  50%;
+    flex: 0 0 50%;
+    background: #ffffff;
 }
 
 .login-form {

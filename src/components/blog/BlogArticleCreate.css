@@ -1,6 +1,6 @@
 .create-article{
-    background-color:  #eef2f5;
-    box-shadow: 0px -1px 37px 0px #9d0551be;
+    background-color: #ffffff;
+    box-shadow: 0px -1px 7px 0px #9d05519a;
     width: 40%;
 }
 
@@ -10,6 +10,7 @@
 
 .create-article-form {
     display: flex;
+    background-color: transparent;
     flex-direction: column;
     text-align: left;
     padding: 2em;
