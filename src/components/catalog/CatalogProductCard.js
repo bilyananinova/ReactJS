@@ -2,7 +2,7 @@ import "./CatalogProductCard.css";
 import { Link } from "react-router-dom";
 
 function CatalogProductCart({ authInfo, wine }) {
-    
+
     return (
         <section className="product-card">
             <div className="product-image">
@@ -17,9 +17,9 @@ function CatalogProductCart({ authInfo, wine }) {
                 <span className="product-price">{wine.price}$</span>
                 <p>{wine.description.substring(0, 150)}...</p>
                 <div className="product-action">
-                    
+
                     <Link
-                        to={`/wine-catalog/details/${wine.id}`}
+                        to={`/wine-catalog/${wine.id}/details`}
                         className="details-btn">
                         <i className="fas fa-wine-bottle"></i>
                         details
@@ -27,12 +27,20 @@ function CatalogProductCart({ authInfo, wine }) {
 
                     {
                         authInfo.isAuthenticated
-                            ? <Link
-                                to="#"
-                                className="add-btn" >
-                                <i className="fas fa-shopping-cart"></i>
+                            ?
+                            <>
+                                <button
+                                    className="add-btn" >
+                                    <i className="fas fa-shopping-cart"></i>
                                 buy
-                            </Link>
+                            </button>
+                                <Link
+                                    to={`/wine-catalog/${wine.id}/edit`}
+                                    className="edit-btn">
+                                    <i className="fas fa-edit"></i>
+                                    edit
+                                 </Link>
+                            </>
                             : ""
                     }
 

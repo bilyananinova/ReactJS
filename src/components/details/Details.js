@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { getOne } from '../../services/winesServices';
 
-function Details({ authInfo, history, location, match }) {
+function Details({ authInfo, match }) {
 
     let [product, setProduct] = React.useState({});
 
@@ -18,7 +18,6 @@ function Details({ authInfo, history, location, match }) {
 
     }, [id]);
 
-    console.log(product);
     return (
         <>
             <section className="details-wrapper">
@@ -36,7 +35,18 @@ function Details({ authInfo, history, location, match }) {
                         {
                             authInfo.isAuthenticated
                                 ? <div className="details-action">
-                                    <Link to="#" className="add-btn"><i className="fas fa-shopping-cart"></i>buy</Link>
+                                    <Link
+                                        to="#"
+                                        className="add-btn">
+                                        <i className="fas fa-shopping-cart"></i>
+                                        buy
+                                        </Link>
+                                    <Link
+                                        to={`/wine-catalog/${product.id}/edit`}
+                                        className="edit-btn">
+                                        <i className="fas fa-edit"></i>
+                                        edit
+                                    </Link>
                                 </div>
                                 : ""
                         }
@@ -57,7 +67,7 @@ function Details({ authInfo, history, location, match }) {
                     ? <form className="commentForm">
                         <h5>Add a review</h5>
                         <label htmlFor="author">From:</label>
-                        <input type="text" name="author" id="author" defaultValue={authInfo.name} disabled/>
+                        <input type="text" name="author" id="author" defaultValue={authInfo.name} disabled />
                         <label htmlFor="content">Comment:</label>
                         <textarea name="content" id="content" placeholder="Leave a comment..." cols="5" rows="2"></textarea>
                         <input type="submit" defaultValue="Create comment" />

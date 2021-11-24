@@ -30,7 +30,7 @@ function BlogArticleCreate() {
                         <label htmlFor="article-title">Title<span className="required">*</span></label>
                         <input type="text" className="form-input" id="article-title" name="title" required />
                         <label htmlFor="article-content">Content<span className="required">*</span></label>
-                        <textarea rows="4" cols="50" rows="15" id="article-content" name="content"></textarea>
+                        <textarea cols="50" rows="15" id="article-content" name="content"></textarea>
                         <label htmlFor="article-img">Image<span className="required">*</span></label>
                         <input type="text" className="form-input" id="article-img" name="image" required />
                         <button type="submit" className="create-article-button" >Create</button>

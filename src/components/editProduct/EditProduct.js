@@ -1,12 +1,25 @@
-import './ProductCreate.css';
+import './EditProduct.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { createProduct } from "../../services/winesServices";
+import { editProduct, getOne } from "../../services/winesServices";
 
-function ProductCreate() {
+function EditProduct({ match }) {
+    let [product, setProduct] = React.useState({});
     let history = useHistory();
 
-    function createProductHandler(e) {
+    let id = match.params.wineId;
+console.log(id);
+    React.useEffect(() => {
+
+        getOne(id)
+            .then(wine => {
+                setProduct(wine.data());
+            })
+
+    }, [id]);
+
+
+    function editProductHandler(e) {
         e.preventDefault();
 
         let title = e.target.title.value;
@@ -14,27 +27,25 @@ function ProductCreate() {
         let price = e.target.price.value;
         let type = e.target.type.value;
         let image = e.target.image.value;
-        let createdAt = Date.now();
 
-        createProduct(title, description, price, type, image, createdAt)
-            .then(() => {
-                e.target.reset();
-                history.push('/wine-catalog');
-            })
+        editProduct(id, title, description, price, type, image)
+        .then(() => {
+            history.push(`/wine-catalog/${id}/details`);
+        })
     }
 
     return (
         <>
-            <h3>New Wine</h3>
-            <div className="form-wrapper create-product">
-                <section className="form-section create-product-section">
-                    <form className="create-product-form" onSubmit={(e) => createProductHandler(e)}>
+            <h3>Edit Wine</h3>
+            <div className="form-wrapper edit-product">
+                <section className="form-section edit-product-section">
+                    <form className="create-product-form" onSubmit={(e) => editProductHandler(e)}>
                         <label htmlFor="wine-title">Title<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-title" name="title" />
+                        <input type="text" className="form-input" id="wine-title" name="title" defaultValue={product.title} />
                         <label htmlFor="wine-description">Description<span className="required">*</span></label>
-                        <textarea cols="50" rows="5" id="wine-description" name="description"></textarea>
+                        <textarea rows="4" cols="50" rows="5" id="wine-description" name="description" defaultValue={product.description} />
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-price" name="price" />
+                        <input type="text" className="form-input" id="wine-price" name="price" defaultValue={product.price} />
                         <label htmlFor="wine-type">Type<span className="required">*</span></label>
                         <select name="type">
                             <option value="red">Red</option>
@@ -45,8 +56,8 @@ function ProductCreate() {
                             <option value="fortified">Fortified</option>
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-img" name="image" />
-                        <button type="submit" className="create-product-button" >Create</button>
+                        <input type="text" className="form-input" id="wine-img" name="image" defaultValue={product.image} />
+                        <button type="submit" className="edit-product-button" >Edit</button>
                     </form>
                 </section>
             </div>
@@ -54,4 +65,4 @@ function ProductCreate() {
     );
 }
 
-export default ProductCreate;
+export default EditProduct;
