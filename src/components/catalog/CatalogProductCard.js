@@ -1,12 +1,18 @@
 import "./CatalogProductCard.css";
+import React from 'react';
 import { Link } from "react-router-dom";
+import { deleteWine } from '../../services/winesServices';
 
 function CatalogProductCart({ authInfo, wine }) {
 
+    function deleteHandler() {
+        deleteWine(wine.id)
+    }
+    
     return (
         <section className="product-card">
             <div className="product-image">
-                <img src={wine.image} alt="" />
+                <img src={wine.image} alt={wine.title} />
             </div>
             <div className="product-details">
 
@@ -15,7 +21,9 @@ function CatalogProductCart({ authInfo, wine }) {
                 </header>
 
                 <span className="product-price">{wine.price}$</span>
+
                 <p>{wine.description.substring(0, 150)}...</p>
+
                 <div className="product-action">
 
                     <Link
@@ -32,14 +40,20 @@ function CatalogProductCart({ authInfo, wine }) {
                                 <button
                                     className="add-btn" >
                                     <i className="fas fa-shopping-cart"></i>
-                                buy
-                            </button>
+                                    buy
+                                </button>
                                 <Link
                                     to={`/wine-catalog/${wine.id}/edit`}
                                     className="edit-btn">
                                     <i className="fas fa-edit"></i>
                                     edit
                                  </Link>
+                                <button
+                                    onClick={deleteHandler}
+                                    className="delete-btn" >
+                                    <i className="fas fa-trash-alt"></i>
+                                    delete
+                                </button>
                             </>
                             : ""
                     }

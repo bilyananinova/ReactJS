@@ -4,21 +4,18 @@ import { getAllWines } from "../../services/winesServices";
 import CatalogProductCart from "./CatalogProductCard";
 
 function Catalog({ authInfo }) {
-    
-    let [products, setProducts] = React.useState([]);
-    let [type, setType] = React.useState('')
+
+    let [wines, setWines] = React.useState([]);
+    let [type, setType] = React.useState('');
 
     React.useEffect(() => {
-        getAllWines()
-            .then(wines => {
-                setProducts(wines)
-            })
+        getAllWines(setWines);
     }, []);
 
     function filter(type) {
         setType(type);
     }
-
+    console.log(wines);
     return (
         <>
             <h3>Our Wines</h3>
@@ -35,22 +32,22 @@ function Catalog({ authInfo }) {
 
                     {type
                         ? (
-                            products
+                            wines
                                 .filter(w => w.type === type)
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
-                                        authInfo={authInfo} 
+                                        authInfo={authInfo}
                                         wine={w} >
                                     </CatalogProductCart>
                                 )
                         )
                         : (
-                            products
+                            wines
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
-                                        authInfo={authInfo} 
+                                        authInfo={authInfo}
                                         wine={w} >
                                     </CatalogProductCart>
                                 )

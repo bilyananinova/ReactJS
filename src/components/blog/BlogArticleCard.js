@@ -7,7 +7,7 @@ function BlogArticleCard({ article }) {
         <article className="blog-article-card">
             <div className="blog-article-card-image">
                 <Link to={`/articles/${article.id}`}>
-                    <img alt="" src={article.img} />
+                    <img alt="" src={article.image} />
                 </Link>
             </div>
             <header className="blog-article-card-header">

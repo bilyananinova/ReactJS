@@ -1,7 +1,7 @@
 import './ProductCreate.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { createProduct } from "../../services/winesServices";
+import { createWine } from "../../services/winesServices";
 
 function ProductCreate() {
     let history = useHistory();
@@ -16,7 +16,7 @@ function ProductCreate() {
         let image = e.target.image.value;
         let createdAt = Date.now();
 
-        createProduct(title, description, price, type, image, createdAt)
+        createWine(title, description, price, type, image, createdAt)
             .then(() => {
                 e.target.reset();
                 history.push('/wine-catalog');

@@ -24,6 +24,7 @@ body, input, textarea{
 
 label, button {
     font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: inherit;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -45,6 +46,7 @@ h6 {font-size: 1.2em;}
 a {
     outline: none; 
     text-decoration: none;
+    font-size: inherit;
 }
 
 li {

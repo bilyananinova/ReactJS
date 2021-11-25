@@ -5,7 +5,7 @@ import { getOne } from '../../services/winesServices';
 
 function Details({ authInfo, match }) {
 
-    let [product, setProduct] = React.useState({});
+    let [wine, setWine] = React.useState({});
 
     let id = match.params.wineId;
 
@@ -13,24 +13,27 @@ function Details({ authInfo, match }) {
 
         getOne(id)
             .then(wine => {
-                setProduct(wine.data());
+                console.log(wine.data());
+                setWine(wine.data());
             })
 
     }, [id]);
 
+    console.log(id);
+    
     return (
         <>
             <section className="details-wrapper">
                 <section className="details-img">
-                    <img src={product.image} alt='' />
+                    <img src={wine.image} alt='' />
                 </section>
                 <section>
                     <div className="details">
                         <header>
-                            <h5>{product.title}</h5>
+                            <h5>{wine.title}</h5>
                         </header>
-                        <span className="details-price">{product.price}$</span>
-                        <p>{product.description}</p>
+                        <span className="details-price">{wine.price}$</span>
+                        <p>{wine.description}</p>
 
                         {
                             authInfo.isAuthenticated
@@ -42,7 +45,7 @@ function Details({ authInfo, match }) {
                                         buy
                                         </Link>
                                     <Link
-                                        to={`/wine-catalog/${product.id}/edit`}
+                                        to={`/wine-catalog/${id}/edit`}
                                         className="edit-btn">
                                         <i className="fas fa-edit"></i>
                                         edit

@@ -7,16 +7,21 @@ import { logout, getUser } from './services/authService';
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
+
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+
 import Home from './components/home/Home';
+
 import Blog from './components/blog/Blog';
-import BlogArticle from './components/blog/BlogArticle';
-import BlogArticleCreate from './components/blog/BlogArticleCreate';
+import BlogArticle from './components/article/BlogArticle';
+import BlogArticleCreate from './components/createArticle/BlogArticleCreate';
+
 import Catalog from './components/catalog/Catalog';
-import ProductCreate from './components/catalog/ProductCreate';
+import ProductCreate from './components/createProduct/ProductCreate';
 import EditProduct from './components/editProduct/EditProduct';
 import Details from './components/details/Details';
+
 import ErrorPage from './components/error/ErrorPage';
 import Cart from './components/cart/Cart';
 

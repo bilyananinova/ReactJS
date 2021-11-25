@@ -1,19 +1,19 @@
 import './EditProduct.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { editProduct, getOne } from "../../services/winesServices";
+import { editWine, getOne } from "../../services/winesServices";
 
 function EditProduct({ match }) {
-    let [product, setProduct] = React.useState({});
+    let [wine, setWine] = React.useState({});
     let history = useHistory();
 
     let id = match.params.wineId;
-console.log(id);
+    
     React.useEffect(() => {
 
         getOne(id)
             .then(wine => {
-                setProduct(wine.data());
+                setWine(wine.data());
             })
 
     }, [id]);
@@ -28,12 +28,12 @@ console.log(id);
         let type = e.target.type.value;
         let image = e.target.image.value;
 
-        editProduct(id, title, description, price, type, image)
+        editWine(id, title, description, price, type, image)
         .then(() => {
             history.push(`/wine-catalog/${id}/details`);
         })
     }
-
+    
     return (
         <>
             <h3>Edit Wine</h3>
@@ -41,11 +41,11 @@ console.log(id);
                 <section className="form-section edit-product-section">
                     <form className="create-product-form" onSubmit={(e) => editProductHandler(e)}>
                         <label htmlFor="wine-title">Title<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-title" name="title" defaultValue={product.title} />
+                        <input type="text" className="form-input" id="wine-title" name="title" defaultValue={wine.title} />
                         <label htmlFor="wine-description">Description<span className="required">*</span></label>
-                        <textarea rows="4" cols="50" rows="5" id="wine-description" name="description" defaultValue={product.description} />
+                        <textarea cols="50" rows="5" id="wine-description" name="description" defaultValue={wine.description} />
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-price" name="price" defaultValue={product.price} />
+                        <input type="text" className="form-input" id="wine-price" name="price" defaultValue={wine.price} />
                         <label htmlFor="wine-type">Type<span className="required">*</span></label>
                         <select name="type">
                             <option value="red">Red</option>
@@ -56,7 +56,7 @@ console.log(id);
                             <option value="fortified">Fortified</option>
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
-                        <input type="text" className="form-input" id="wine-img" name="image" defaultValue={product.image} />
+                        <input type="text" className="form-input" id="wine-img" name="image" defaultValue={wine.image} />
                         <button type="submit" className="edit-product-button" >Edit</button>
                     </form>
                 </section>

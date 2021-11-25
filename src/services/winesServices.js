@@ -1,23 +1,18 @@
-import { getDocs, collection, doc, getDoc, addDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, getDoc, addDoc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
 let winesRef = collection(db, 'wines');
 
-function getAllWines() {
+function getAllWines(setWines) {
 
-    return getDocs(winesRef)
-        .then((snapshot) => {
-            let wines = [];
-            snapshot.docs.forEach((doc) => {
-                wines.push({ ...doc.data(), id: doc.id })
-            });
-
-            return wines;
-        })
-        .catch(err => {
-            console.error(err);
+    onSnapshot(winesRef, (snapshot) => {
+        let wines = [];
+        snapshot.docs.forEach((doc) => {
+            wines.push({ ...doc.data(), id: doc.id })
         });
-
+        
+        setWines(wines)
+    });
 }
 
 function getOne(id) {
@@ -25,16 +20,16 @@ function getOne(id) {
     return getDoc(wineRef);
 }
 
-function createProduct(title, description, price, type, image, createdAt) {
+function createWine(title, description, price, type, image, createdAt) {
     return addDoc(winesRef, { title, description, price, type, image, createdAt })
         .then(wine => {
             return wine
         })
 }
 
-function editProduct(wineId, title, description, price, type, image) {
+function editWine(wineId, title, description, price, type, image) {
     let wineRef = doc(db, 'wines', wineId);
-    console.log(title);
+
     return updateDoc(wineRef, {
         title,
         description,
@@ -42,14 +37,23 @@ function editProduct(wineId, title, description, price, type, image) {
         type,
         image
     })
-    .then(result => {
-        console.log(result);
-    })
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            console.error(err);
+        })
+}
+
+function deleteWine(wineId) {
+    let wineRef = doc(db, 'wines', wineId)
+    return deleteDoc(wineRef);
 }
 
 export {
     getAllWines,
     getOne,
-    createProduct,
-    editProduct
+    createWine,
+    editWine,
+    deleteWine
 }

@@ -53,8 +53,9 @@
     padding-right: 0.5em;
 }
 
-.product-action a,
-.add-btn {
+.add-btn,
+.delete-btn,
+.product-action a {
     border: 1px solid #9D0552;
     padding: 0.5em 0.8em;
     border-radius: 0.3em;
@@ -64,8 +65,14 @@
     margin-right: 0.8em;
 }
 
+.add-btn,
+.delete-btn {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
 .product-action a:hover,
-.add-btn:hover {
+.add-btn:hover,
+.delete-btn:hover {
     border-color: #9d0551b4;
     color: #9D0552;
     background: #ffffff;
