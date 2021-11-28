@@ -1,0 +1,56 @@
+.commentForm {
+    background-color: #eef2f5;
+    margin: 3em auto;
+    padding-left: 1em;
+    display: flex;
+    width: 60em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentForm input,
+.commentForm label,
+.commentForm textarea {
+    align-self: start;
+    padding: 0.5em;
+}
+
+.commentForm input,
+.commentForm textarea {
+    align-self: start;
+    border: 1px solid #9D0552;
+    border-radius: 0.5em;
+}
+
+.commentForm input:hover,
+.commentForm input:focus,
+.commentForm textarea:hover, 
+.commentForm textarea:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px 1px #9d0551b4;
+}
+
+.commentForm textarea {
+    width: 50em;
+}
+
+.commentForm input[type="submit"] {
+    margin: 1em 0;
+    border: 1px solid #9D0552;
+    padding: 0.5em 0.8em;
+    border-radius: 0.3em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #9D0552;
+}
+
+input[type="submit"]:focus,
+input[type="submit"]:hover {
+    cursor: pointer;
+    border-color: #9d0551b4;
+    color: #9D0552;
+    background: #ffffff;
+    box-shadow: 0px 0px 5px 1px #9d0551b4;
+}

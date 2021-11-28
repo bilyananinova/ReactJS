@@ -1,10 +1,9 @@
 import './Catalog.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { getAllWines } from "../../services/winesServices";
 import CatalogProductCart from "./CatalogProductCard";
 
-function Catalog({ authInfo }) {
-
+function Catalog() {
     let [wines, setWines] = React.useState([]);
     let [type, setType] = React.useState('');
 
@@ -15,7 +14,7 @@ function Catalog({ authInfo }) {
     function filter(type) {
         setType(type);
     }
-    console.log(wines);
+
     return (
         <>
             <h3>Our Wines</h3>
@@ -37,7 +36,6 @@ function Catalog({ authInfo }) {
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
-                                        authInfo={authInfo}
                                         wine={w} >
                                     </CatalogProductCart>
                                 )
@@ -47,7 +45,6 @@ function Catalog({ authInfo }) {
                                 .map(w =>
                                     <CatalogProductCart
                                         key={w.id}
-                                        authInfo={authInfo}
                                         wine={w} >
                                     </CatalogProductCart>
                                 )

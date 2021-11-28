@@ -2,13 +2,15 @@ import "./CatalogProductCard.css";
 import React from 'react';
 import { Link } from "react-router-dom";
 import { deleteWine } from '../../services/winesServices';
+import UserContext from "../../contexts/UserContext";
 
-function CatalogProductCart({ authInfo, wine }) {
+function CatalogProductCart({ wine }) {
+    let user = React.useContext(UserContext);
 
     function deleteHandler() {
         deleteWine(wine.id)
     }
-    
+
     return (
         <section className="product-card">
             <div className="product-image">
@@ -33,15 +35,16 @@ function CatalogProductCart({ authInfo, wine }) {
                         details
                     </Link>
 
+                    <button
+                        className="add-btn" >
+                        <i className="fas fa-shopping-cart"></i>
+                        buy
+                    </button>
+
                     {
-                        authInfo.isAuthenticated
+                        user.isAdmin
                             ?
                             <>
-                                <button
-                                    className="add-btn" >
-                                    <i className="fas fa-shopping-cart"></i>
-                                    buy
-                                </button>
                                 <Link
                                     to={`/wine-catalog/${wine.id}/edit`}
                                     className="edit-btn">

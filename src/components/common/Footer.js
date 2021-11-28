@@ -33,9 +33,9 @@ function Footer() {
                     <section className="social-media">
                         <h6 className="footer-title">Social media</h6>
                         <ul>
-                            <li><a href="/"><i className="fab fa-facebook-square"></i></a></li>
-                            <li><a href="/"><i className="fab fa-twitter-square"></i></a></li>
-                            <li><a href="/"><i className="fab fa-instagram"></i></a></li>
+                            <li><Link to="/"><i className="fab fa-facebook-square"></i></Link></li>
+                            <li><Link to="/"><i className="fab fa-twitter-square"></i></Link></li>
+                            <li><Link to="/"><i className="fab fa-instagram"></i></Link></li>
                         </ul>
                     </section>
                 </section>

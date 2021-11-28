@@ -92,9 +92,7 @@
     background-color:inherit;
 }
 
-.mainav div,
-.guest, 
-.user {
+.mainav div {
     display: flex;
     align-items: center;
 }

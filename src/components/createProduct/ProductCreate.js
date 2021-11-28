@@ -11,7 +11,7 @@ function ProductCreate() {
 
         let title = e.target.title.value;
         let description = e.target.description.value;
-        let price = e.target.price.value;
+        let price = Number(e.target.price.value);
         let type = e.target.type.value;
         let image = e.target.image.value;
         let createdAt = Date.now();

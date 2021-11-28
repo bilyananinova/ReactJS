@@ -10,7 +10,7 @@ function getAllWines(setWines) {
         snapshot.docs.forEach((doc) => {
             wines.push({ ...doc.data(), id: doc.id })
         });
-        
+
         setWines(wines)
     });
 }

@@ -1,19 +1,12 @@
 import './Header.css';
+import React from 'react';
 import { Link } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
+import GuestNav from "./GuestNav";
+import UserNav from "./UserNav";
 
-function Header({ authInfo }) {
-
-    let userNav = <div className="user">
-        <Link to="/">Welcome, {authInfo.name} !</Link>
-        <Link to="/wine-catalog/create">Create product</Link>
-        <Link to="/articles/create">Create article</Link>
-        <Link to="/logout" >Logout</Link>
-    </div>
-
-    let guestNav = <div className="guest">
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-    </div>
+function Header() {
+    let user = React.useContext(UserContext);
 
     return (
         <>
@@ -28,7 +21,8 @@ function Header({ authInfo }) {
                     <ul className="header-contacts">
                         <li><strong>Phone:</strong>+359 888 000 000</li>
                         <li><strong>Email:</strong>email@mail.bg</li>
-                        {authInfo.isAuthenticated
+
+                        {user.isLoggedIn
                             ? <li className="cart">
                                 <Link to="#">
                                     <i className="fas fa-shopping-bag"></i>
@@ -37,6 +31,7 @@ function Header({ authInfo }) {
                             </li>
                             : ""
                         }
+
                     </ul>
                 </section>
 
@@ -47,11 +42,14 @@ function Header({ authInfo }) {
                     <Link to="/">Home</Link>
                     <Link to="/wine-catalog">Shop</Link>
                     <Link to="/articles">Blog</Link>
+
+                    {user.isAdmin ?
+                        <> <Link to="/wine-catalog/create">Create product</Link>
+                            <Link to="/articles/create">Create article</Link>
+                        </>
+                        : ""}
                 </div>
-                {authInfo.isAuthenticated
-                    ? userNav
-                    : guestNav
-                }
+                {user.isLoggedIn ? <UserNav /> : <GuestNav />}
 
             </nav>
 

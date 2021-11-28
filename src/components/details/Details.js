@@ -1,26 +1,33 @@
 import './Details.css';
 import React from 'react';
-import { Link } from "react-router-dom";
-import { getOne } from '../../services/winesServices';
+import Comments from '../comments/Comments';
+import CreateComment from '../createComment/CreateComment';
+import { useHistory } from "react-router-dom";
+import { getOne, deleteWine } from '../../services/winesServices';
+import UserContext from "../../contexts/UserContext";
+import EditButton from './EditButton';
+import DeleteButton from './DeleteButton';
+import AddButton from './AddButton';
 
-function Details({ authInfo, match }) {
-
+function Details({ match }) {
     let [wine, setWine] = React.useState({});
 
+    let user = React.useContext(UserContext);
     let id = match.params.wineId;
+    let history = useHistory();
 
     React.useEffect(() => {
-
         getOne(id)
             .then(wine => {
-                console.log(wine.data());
                 setWine(wine.data());
             })
-
     }, [id]);
 
-    console.log(id);
-    
+    function deleteHandler(e) {
+        deleteWine(id);
+        history.push('/wine-catalog');
+    }
+
     return (
         <>
             <section className="details-wrapper">
@@ -32,49 +39,32 @@ function Details({ authInfo, match }) {
                         <header>
                             <h5>{wine.title}</h5>
                         </header>
+
                         <span className="details-price">{wine.price}$</span>
                         <p>{wine.description}</p>
 
-                        {
-                            authInfo.isAuthenticated
-                                ? <div className="details-action">
-                                    <Link
-                                        to="#"
-                                        className="add-btn">
-                                        <i className="fas fa-shopping-cart"></i>
-                                        buy
-                                        </Link>
-                                    <Link
-                                        to={`/wine-catalog/${id}/edit`}
-                                        className="edit-btn">
-                                        <i className="fas fa-edit"></i>
-                                        edit
-                                    </Link>
-                                </div>
-                                : ""
-                        }
+                        {user.isLoggedIn && !user.isAdmin
+                            ? <div className="details-action">
+                                <AddButton />
+                            </div>
+                            : ""}
+
+                        {user.isLoggedIn && user.isAdmin
+                            ? <div className="details-action">
+                                <AddButton /> <EditButton id={id} /> <DeleteButton deleteHandler={deleteHandler} />
+                            </div>
+                            : ""}
+                        
+
                     </div>
                 </section>
             </section>
 
-            <section className="commentSection">
-                <h5>Comments</h5>
-                <div className="comment">
-                    <p><span className="author">Name</span> - <span className="date">10.10.2021</span></p>
-                    <p><span className="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span></p>
-                </div>
-            </section>
+            <Comments />
 
             {
-                authInfo.isAuthenticated
-                    ? <form className="commentForm">
-                        <h5>Add a review</h5>
-                        <label htmlFor="author">From:</label>
-                        <input type="text" name="author" id="author" defaultValue={authInfo.name} disabled />
-                        <label htmlFor="content">Comment:</label>
-                        <textarea name="content" id="content" placeholder="Leave a comment..." cols="5" rows="2"></textarea>
-                        <input type="submit" defaultValue="Create comment" />
-                    </form>
+                user.isLoggedIn
+                    ? <CreateComment />
                     : ""
             }
         </>

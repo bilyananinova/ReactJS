@@ -1,0 +1,16 @@
+.details-action .edit-btn {
+    border: 1px solid #9D0552;
+    padding: 0.5em 0.8em;
+    border-radius: 0.3em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #9D0552;
+    margin-right: 0.8em;
+}
+
+.details-action .edit-btn:hover {
+    border-color: #9d0551b4;
+    color: #000000;
+    background: #ffe600;
+    box-shadow: 0px 0px 5px 1px #9d0551b4;
+}
