@@ -1,5 +1,4 @@
 function authorization(user) {
-    
     let isLoggedIn = false
     let isAdmin = false
     let currentUser = null;
@@ -14,7 +13,6 @@ function authorization(user) {
 
     if (isLoggedIn) {
         currentUser = {
-            displayName: user.displayName,
             email: user.email,
             uid: user.uid,
         };
@@ -27,4 +25,4 @@ function authorization(user) {
     }
 }
 
-export default authorization;  
+export default authorization; 

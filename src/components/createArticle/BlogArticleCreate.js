@@ -23,7 +23,7 @@ function BlogArticleCreate() {
 
     return (
         <>
-            <h3>New Article</h3>
+            <h3>Create New Article</h3>
             <div className="form-wrapper create-article">
                 <section className="form-section create-article-section">
                     <form className="create-article-form" onSubmit={(e) => articleHandler(e)}>

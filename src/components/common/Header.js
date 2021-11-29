@@ -7,7 +7,7 @@ import UserNav from "./UserNav";
 
 function Header() {
     let user = React.useContext(UserContext);
-
+    
     return (
         <>
             <header className="site-header">

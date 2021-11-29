@@ -22,7 +22,7 @@ function BlogArticle({
                 <h3>{article.title}</h3>
             </header>
             <section className="blog-article-media">
-                <img src={article.image} alt="" />
+                <img src={article.image} alt={article.title} />
             </section>
             <section className="blog-article-content">
                 <p>{article.content}</p>

@@ -55,7 +55,7 @@ function logout() {
 function getUser(userId) {
     let userRef = doc(db, "users", userId);
     let user = getDoc(userRef);
-    return user
+    return user;
 }
 
 export {

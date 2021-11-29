@@ -32,7 +32,7 @@ function Details({ match }) {
         <>
             <section className="details-wrapper">
                 <section className="details-img">
-                    <img src={wine.image} alt='' />
+                    <img src={wine.image} alt={wine.title} />
                 </section>
                 <section>
                     <div className="details">
@@ -54,17 +54,18 @@ function Details({ match }) {
                                 <AddButton /> <EditButton id={id} /> <DeleteButton deleteHandler={deleteHandler} />
                             </div>
                             : ""}
-                        
+
 
                     </div>
                 </section>
             </section>
 
-            <Comments />
+            {/* <Comments >{wine.comments}</Comments> */}
+            {/* <Comments comments={wine.comments} /> */}
 
             {
                 user.isLoggedIn
-                    ? <CreateComment />
+                    ? <CreateComment id={id} />
                     : ""
             }
         </>

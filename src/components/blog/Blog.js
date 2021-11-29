@@ -11,7 +11,7 @@ function Blog({customRouter}) {
             .then(articles => {
                 setArticles(articles);
             })
-    }, []);
+    }, [articles]);
 
     return (
         <>

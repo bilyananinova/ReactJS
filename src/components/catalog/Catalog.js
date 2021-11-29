@@ -1,5 +1,5 @@
 import './Catalog.css';
-import React, { useContext } from 'react';
+import React from 'react';
 import { getAllWines } from "../../services/winesServices";
 import CatalogProductCart from "./CatalogProductCard";
 

@@ -1,13 +1,21 @@
 import './Comments.css';
+import Comment from "./Comment";
 
-function Comments() {
+function Comments(comments) {
+    let commentsList = comments;
+    
     return (
+
         <section className="commentSection">
             <h5>Comments</h5>
-            <div className="comment">
-                <p><span className="author">Name</span> - <span className="date">10.10.2021</span></p>
-                <p><span className="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span></p>
-            </div>
+            {commentsList.comments?.length > 0
+                ? (
+                    commentsList.comments
+                        .map(c => <Comment key={c.createdAt} comment={c} />)
+                )
+                : <div className="comment">
+                    <p><span className="content">There are no comment yet...</span></p>
+                </div>}
         </section>
     );
 }

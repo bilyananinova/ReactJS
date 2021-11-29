@@ -2,11 +2,8 @@ import './Register.css';
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { register } from "../../services/authService";
-import authorization from '../../authorization';
-import UserContext from "../../contexts/UserContext";
 
 function Register() {
-    let [authInfo, setAuthInfo] = React.useState({})
     let history = useHistory();
 
     function handleSubmit(e) {
@@ -19,7 +16,6 @@ function Register() {
 
         register(name, email, password, rePassword)
             .then(user => {
-                authorization(setAuthInfo);
                 e.target.reset();
                 history.push('/');
             })
@@ -27,13 +23,12 @@ function Register() {
 
     return (
         <>
-            <UserContext.Provider value={authInfo} />
-            <h2>Register Page</h2>
+            <h3>Register Page</h3>
             <section className="form-wrapper">
                 <section className="form-section">
                     <form className="register-form" onSubmit={handleSubmit}>
-                        <label htmlFor="register-name">Name <span className="required">*</span></label>
-                        <input type="text" className="form-input" id="register-name" name="name" placeholder="Ivan Ivanov" />
+                        {/* <label htmlFor="register-name">Name <span className="required">*</span></label>
+                        <input type="text" className="form-input" id="register-name" name="name" placeholder="Ivan Ivanov" /> */}
                         <label htmlFor="register-email">Email address<span className="required">*</span></label>
                         <input type="email" className="form-input" id="register-email" name="email" placeholder="ivan@mail.bg" required />
                         <label htmlFor="register-password">Password <span className="required">*</span></label>

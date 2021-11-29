@@ -25,7 +25,7 @@ function ProductCreate() {
 
     return (
         <>
-            <h3>New Wine</h3>
+            <h3>Create New Wine</h3>
             <div className="form-wrapper create-product">
                 <section className="form-section create-product-section">
                     <form className="create-product-form" onSubmit={(e) => createProductHandler(e)}>

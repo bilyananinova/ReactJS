@@ -21,7 +21,7 @@ function Login() {
 
     return (
         <>
-            <h2>Login Page</h2>
+            <h3>Login Page</h3>
             <div className="form-wrapper">
                 <section className="form-img">
                     <img src="https://images.unsplash.com/photo-1605701250884-56644288b8ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" alt="" />

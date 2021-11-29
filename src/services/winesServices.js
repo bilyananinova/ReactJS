@@ -17,7 +17,7 @@ function getAllWines(setWines) {
 
 function getOne(id) {
     let wineRef = doc(db, 'wines', id);
-    return getDoc(wineRef);
+    return getDoc(wineRef)
 }
 
 function createWine(title, description, price, type, image, createdAt) {

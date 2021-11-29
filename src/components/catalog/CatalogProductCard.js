@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 
 function CatalogProductCart({ wine }) {
     let user = React.useContext(UserContext);
-
+    
     function deleteHandler() {
         deleteWine(wine.id)
     }
@@ -35,36 +35,41 @@ function CatalogProductCart({ wine }) {
                         details
                     </Link>
 
-                    <button
-                        className="add-btn" >
-                        <i className="fas fa-shopping-cart"></i>
-                        buy
-                    </button>
-
                     {
-                        user.isAdmin
-                            ?
-                            <>
-                                <Link
-                                    to={`/wine-catalog/${wine.id}/edit`}
-                                    className="edit-btn">
-                                    <i className="fas fa-edit"></i>
-                                    edit
-                                 </Link>
-                                <button
-                                    onClick={deleteHandler}
-                                    className="delete-btn" >
-                                    <i className="fas fa-trash-alt"></i>
-                                    delete
-                                </button>
-                            </>
-                            : ""
+                        user.isLoggedIn
+                        ? < button
+                            className="add-btn" >
+                            <i className="fas fa-shopping-cart"></i>
+                            buy
+                        </button>
+                        : ""
                     }
 
-                </div>
+
+                    {
+                    user.isAdmin
+                        ?
+                        <>
+                            <Link
+                                to={`/wine-catalog/${wine.id}/edit`}
+                                className="edit-btn">
+                                <i className="fas fa-edit"></i>
+                                    edit
+                                 </Link>
+                            <button
+                                onClick={deleteHandler}
+                                className="delete-btn" >
+                                <i className="fas fa-trash-alt"></i>
+                                    delete
+                                </button>
+                        </>
+                        : ""
+                }
 
             </div>
-        </section>
+
+            </div>
+        </section >
     );
 }
 
