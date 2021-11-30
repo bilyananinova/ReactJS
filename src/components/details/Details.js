@@ -11,6 +11,7 @@ import AddButton from './AddButton';
 
 function Details({ match }) {
     let [wine, setWine] = React.useState({});
+    let [comments, setComments] = React.useState([]);
 
     let user = React.useContext(UserContext);
     let id = match.params.wineId;
@@ -20,8 +21,9 @@ function Details({ match }) {
         getOne(id)
             .then(wine => {
                 setWine(wine.data());
+                setComments(wine.data().comments)
             })
-    }, [id]);
+    }, [comments]);
 
     function deleteHandler(e) {
         deleteWine(id);
@@ -51,7 +53,9 @@ function Details({ match }) {
 
                         {user.isLoggedIn && user.isAdmin
                             ? <div className="details-action">
-                                <AddButton /> <EditButton id={id} /> <DeleteButton deleteHandler={deleteHandler} />
+                                <AddButton /> 
+                                <EditButton id={id} /> 
+                                <DeleteButton deleteHandler={deleteHandler} />
                             </div>
                             : ""}
 
@@ -60,8 +64,7 @@ function Details({ match }) {
                 </section>
             </section>
 
-            {/* <Comments >{wine.comments}</Comments> */}
-            {/* <Comments comments={wine.comments} /> */}
+            <Comments comments={comments} />
 
             {
                 user.isLoggedIn
