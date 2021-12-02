@@ -66,6 +66,15 @@
     padding-bottom: 1em;
 }
 
+.details-header p {
+    opacity: 0.6;
+}
+
+.details-type{
+    color: #9D0552;
+    text-transform: uppercase;
+}
+
 .details-action {
     margin: 1.5em 0;
 }

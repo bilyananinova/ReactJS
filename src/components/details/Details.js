@@ -23,7 +23,7 @@ function Details({ match }) {
                 setWine(wine.data());
                 setComments(wine.data().comments)
             })
-    }, [comments]);
+    }, [id, comments]);
 
     function deleteHandler(e) {
         deleteWine(id);
@@ -38,8 +38,9 @@ function Details({ match }) {
                 </section>
                 <section>
                     <div className="details">
-                        <header>
+                        <header className="details-header">
                             <h5>{wine.title}</h5>
+                            <p>Category: <span className="details-type">{wine.category}</span></p>
                         </header>
 
                         <span className="details-price">{wine.price}$</span>

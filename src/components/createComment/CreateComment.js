@@ -1,12 +1,10 @@
 import './CreateComment.css';
 import React from "react";
-import { useHistory } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { createComment } from "../../services/commentsServices";
 
 function Comments({ id }) {
     let user = React.useContext(UserContext);
-    let history = useHistory();
 
     function commentHandler(e) {
         e.preventDefault();

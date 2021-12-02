@@ -12,11 +12,11 @@ function ProductCreate() {
         let title = e.target.title.value;
         let description = e.target.description.value;
         let price = Number(e.target.price.value);
-        let type = e.target.type.value;
+        let category = e.target.category.value;
         let image = e.target.image.value;
         let createdAt = Date.now();
 
-        createWine(title, description, price, type, image, createdAt)
+        createWine(title, description, price, category, image, createdAt)
             .then(() => {
                 e.target.reset();
                 history.push('/wine-catalog');
@@ -35,8 +35,8 @@ function ProductCreate() {
                         <textarea cols="50" rows="5" id="wine-description" name="description"></textarea>
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-price" name="price" />
-                        <label htmlFor="wine-type">Type<span className="required">*</span></label>
-                        <select name="type">
+                        <label htmlFor="wine-type">Category<span className="required">*</span></label>
+                        <select name="category">
                             <option value="red">Red</option>
                             <option value="white">White</option>
                             <option value="rose">Rose</option>

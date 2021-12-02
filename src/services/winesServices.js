@@ -5,14 +5,27 @@ let winesRef = collection(db, 'wines');
 
 function getAllWines(setWines) {
 
-    onSnapshot(winesRef, (snapshot) => {
-        let wines = [];
-        snapshot.docs.forEach((doc) => {
-            wines.push({ ...doc.data(), id: doc.id })
+    return getDocs(winesRef)
+        .then((snapshot) => {
+            let wines = [];
+            snapshot.docs.forEach((doc) => {
+                wines.push({ ...doc.data(), id: doc.id })
+            });
+
+            return wines;
+        })
+        .catch(err => {
+            console.error(err);
         });
 
-        setWines(wines)
-    });
+    // onSnapshot(winesRef, (snapshot) => {
+    //     let wines = [];
+    //     snapshot.docs.forEach((doc) => {
+    //         wines.push({ ...doc.data(), id: doc.id })
+    //     });
+
+    //     setWines(wines)
+    // });
 }
 
 function getOne(id) {
@@ -20,21 +33,21 @@ function getOne(id) {
     return getDoc(wineRef)
 }
 
-function createWine(title, description, price, type, image, createdAt) {
-    return addDoc(winesRef, { title, description, price, type, image, createdAt })
+function createWine(title, description, price, category, image, createdAt) {
+    return addDoc(winesRef, { title, description, price, category, image, createdAt })
         .then(wine => {
             return wine
         })
 }
 
-function editWine(wineId, title, description, price, type, image) {
+function editWine(wineId, title, description, price, category, image) {
     let wineRef = doc(db, 'wines', wineId);
 
     return updateDoc(wineRef, {
         title,
         description,
         price,
-        type,
+        category,
         image
     })
         .then(result => {

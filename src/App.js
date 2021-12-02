@@ -35,7 +35,7 @@ function App() {
   }, [user]);
 
   let authInfo = authorization(user);
-  
+
   return (
     <div className="App">
       <UserContext.Provider value={authInfo}>
@@ -45,13 +45,16 @@ function App() {
         <main className="site-main">
           <Switch>
             <Route path="/" exact component={Home} />
+
             <Route path="/articles" exact component={Blog} />
             <Route path="/articles/create" component={BlogArticleCreate} />
             <Route path="/articles/:articleId" component={BlogArticle} />
-            <Route path="/wine-catalog" exact render={() => <Catalog />} />
+
             <Route path="/wine-catalog/create" component={ProductCreate} />
-            <Route path="/wine-catalog/:wineId/details" render={(props) => <Details {...props} />} />
             <Route path="/wine-catalog/:wineId/edit" component={EditProduct} />
+            <Route path="/wine-catalog/:wineId/details" component={Details} />
+            <Route path="/wine-catalog/:category?" exact component={Catalog} />
+
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/logout" render={() => {

@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 
 function CatalogProductCart({ wine }) {
     let user = React.useContext(UserContext);
-    
+
     function deleteHandler() {
         deleteWine(wine.id)
     }
@@ -20,6 +20,7 @@ function CatalogProductCart({ wine }) {
 
                 <header className="product-header">
                     <h5>{wine.title}</h5>
+                    <p>Category: <span className="product-type">{wine.category}</span></p>
                 </header>
 
                 <span className="product-price">{wine.price}$</span>
@@ -37,36 +38,36 @@ function CatalogProductCart({ wine }) {
 
                     {
                         user.isLoggedIn
-                        ? < button
-                            className="add-btn" >
-                            <i className="fas fa-shopping-cart"></i>
+                            ? < button
+                                className="add-btn" >
+                                <i className="fas fa-shopping-cart"></i>
                             buy
                         </button>
-                        : ""
+                            : ""
                     }
 
 
                     {
-                    user.isAdmin
-                        ?
-                        <>
-                            <Link
-                                to={`/wine-catalog/${wine.id}/edit`}
-                                className="edit-btn">
-                                <i className="fas fa-edit"></i>
+                        user.isAdmin
+                            ?
+                            <>
+                                <Link
+                                    to={`/wine-catalog/${wine.id}/edit`}
+                                    className="edit-btn">
+                                    <i className="fas fa-edit"></i>
                                     edit
                                  </Link>
-                            <button
-                                onClick={deleteHandler}
-                                className="delete-btn" >
-                                <i className="fas fa-trash-alt"></i>
+                                <button
+                                    onClick={deleteHandler}
+                                    className="delete-btn" >
+                                    <i className="fas fa-trash-alt"></i>
                                     delete
                                 </button>
-                        </>
-                        : ""
-                }
+                            </>
+                            : ""
+                    }
 
-            </div>
+                </div>
 
             </div>
         </section >

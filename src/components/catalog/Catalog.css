@@ -21,9 +21,13 @@
 
 .products-aside li {
     margin: 0.5em auto;
-    color: #9D0552;
     cursor: pointer;
 }
+
+.products-aside a {
+    color: #9D0552;
+}
+
 
 .products-list {
     padding-left: 2em;
