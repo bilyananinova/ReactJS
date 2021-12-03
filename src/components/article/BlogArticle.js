@@ -12,7 +12,7 @@ function BlogArticle({
     React.useEffect(() => {
         getOneArticle(id)
             .then(article => {
-                setArticle(article.data())
+                setArticle(article.data());
             })
     }, [id]);
 
@@ -21,11 +21,13 @@ function BlogArticle({
             <header className="blog-article-title">
                 <h3>{article.title}</h3>
             </header>
-            <section className="blog-article-media">
-                <img src={article.image} alt={article.title} />
-            </section>
-            <section className="blog-article-content">
-                <p>{article.content}</p>
+            <section className="content">
+                <section className="blog-article-media">
+                    <img src={article.image} alt={article.title} />
+                </section>
+                <section className="blog-article-content">
+                    {article.content}
+                </section>
             </section>
         </article>
 
