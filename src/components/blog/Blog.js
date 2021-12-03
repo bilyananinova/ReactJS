@@ -3,7 +3,7 @@ import React from 'react';
 import { getAllArticles } from "../../services/blogServices";
 import BlogArticleCard from './BlogArticleCard';
 
-function Blog({customRouter}) {
+function Blog() {
     let [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
@@ -20,7 +20,7 @@ function Blog({customRouter}) {
                 <div className="blog">
 
                     {articles.map(a =>
-                        <BlogArticleCard key={a.id} article={a} customRouter={customRouter}  />
+                        <BlogArticleCard key={a.id} article={a} />
                     )}
 
                 </div>

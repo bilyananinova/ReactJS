@@ -25,10 +25,10 @@ function EditProduct({ match }) {
         let title = e.target.title.value;
         let description = e.target.description.value;
         let price = e.target.price.value;
-        let type = e.target.type.value;
+        let category = e.target.type.value;
         let image = e.target.image.value;
 
-        editWine(id, title, description, price, type, image)
+        editWine(id, title, description, price, category, image)
         .then(() => {
             history.push(`/wine-catalog/${id}/details`);
         })

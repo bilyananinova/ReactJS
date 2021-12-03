@@ -1,4 +1,4 @@
-import { getDocs, collection, doc, getDoc, addDoc, query, orderBy, limit } from "firebase/firestore";
+import { getDocs, collection, doc, getDoc, addDoc, query, orderBy, limit, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
 let articlesRef = collection(db, 'articles');
@@ -32,6 +32,27 @@ function createArticle(title, content, image, createdAt) {
         })
 }
 
+function editArticle(articleId, title, content, image) {
+    let articleRef = doc(db, 'articles', articleId);
+
+    return updateDoc(articleRef, {
+        title,
+        content,
+        image
+    })
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            console.error(err);
+        })
+}
+
+function deleteArticle(articleId) {
+    let articleRef = doc(db, 'articles', articleId);
+    return deleteDoc(articleRef);
+}
+
 function lastArticles() {
     let params = query(articlesRef, orderBy('createdAt', 'desc'), limit(3))
     return getDocs(params)
@@ -53,5 +74,7 @@ export {
     getAllArticles,
     getOneArticle,
     createArticle,
+    editArticle,
+    deleteArticle,
     lastArticles
 }

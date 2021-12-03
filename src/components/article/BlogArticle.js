@@ -1,10 +1,14 @@
 import './BlogArticle.css'
 import React from 'react';
+import AdminBtns from './AdminBtns';
 import { getOneArticle } from "../../services/blogServices";
+import UserContext from "../../contexts/UserContext";
 
 function BlogArticle({
     match
 }) {
+    let user = React.useContext(UserContext);
+
     let [article, setArticle] = React.useState([]);
 
     let id = match.params.articleId;
@@ -12,15 +16,16 @@ function BlogArticle({
     React.useEffect(() => {
         getOneArticle(id)
             .then(article => {
-                setArticle(article.data());
+                setArticle({ ...article.data(), id: id });
             })
-    }, [id]);
+    }, [article]);
 
     return (
         <article className="blog-article">
             <header className="blog-article-title">
                 <h3>{article.title}</h3>
             </header>
+
             <section className="content">
                 <section className="blog-article-media">
                     <img src={article.image} alt={article.title} />
@@ -28,7 +33,15 @@ function BlogArticle({
                 <section className="blog-article-content">
                     {article.content}
                 </section>
+
+                {
+                    user.isAdmin
+                        ? <AdminBtns article={article} />
+                        : ''
+                }
+
             </section>
+
         </article>
 
     );

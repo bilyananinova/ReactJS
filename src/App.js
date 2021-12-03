@@ -18,6 +18,7 @@ import Home from './components/home/Home';
 import Blog from './components/blog/Blog';
 import BlogArticle from './components/article/BlogArticle';
 import BlogArticleCreate from './components/createArticle/BlogArticleCreate';
+import EditArticle from './components/editArticle/EditArticle';
 
 import Catalog from './components/catalog/Catalog';
 import ProductCreate from './components/createProduct/ProductCreate';
@@ -44,11 +45,13 @@ function App() {
 
         <main className="site-main">
           <Switch>
+
             <Route path="/" exact component={Home} />
 
             <Route path="/articles" exact component={Blog} />
             <Route path="/articles/create" component={BlogArticleCreate} />
-            <Route path="/articles/:articleId" component={BlogArticle} />
+            <Route path="/articles/:articleId" exact component={BlogArticle} />
+            <Route path="/articles/:articleId/edit" component={EditArticle} />
 
             <Route path="/wine-catalog/create" component={ProductCreate} />
             <Route path="/wine-catalog/:wineId/edit" component={EditProduct} />
@@ -61,7 +64,7 @@ function App() {
               logout(auth);
               return <Redirect to="/" />
             }} />
-            <Route component={ErrorPage} />
+            <Route path="*" component={ErrorPage} />
           </Switch>
         </main>
 
