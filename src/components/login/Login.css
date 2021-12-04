@@ -8,6 +8,7 @@
 .form-section {
     flex: 0 0 50%;
     background: #ffffff;
+    position: relative;
 }
 
 .login-form {
@@ -75,4 +76,8 @@
     padding-top: 100%;
     content: '';
     display: block;
+}
+
+.required {
+    color: #ff0000;
 }

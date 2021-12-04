@@ -2,8 +2,10 @@ import './ProductCreate.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { createWine } from "../../services/winesServices";
+import ErrorMsg from "../error/ErrorMsg";
 
 function ProductCreate() {
+    let [error, setError] = React.useState('');
     let history = useHistory();
 
     function createProductHandler(e) {
@@ -16,16 +18,32 @@ function ProductCreate() {
         let image = e.target.image.value;
         let createdAt = Date.now();
 
+        if (!title || !description || !price || !image) {
+            return setError('All fields are required!');
+        }
+
+        if (title.length < 10) {
+            return setError('Title must be at least 10 characters long!');
+        }
+
+        if (description.length < 50) {
+            return setError('Description must be at least 0 characters long!');
+        }
+
         createWine(title, description, price, category, image, createdAt)
             .then(() => {
                 e.target.reset();
                 history.push('/wine-catalog');
+            })
+            .catch(err => {
+                setError(err.message);
             })
     }
 
     return (
         <>
             <h3>Create New Wine</h3>
+            {error ? <ErrorMsg error={error} /> : ""}
             <div className="form-wrapper create-product">
                 <section className="form-section create-product-section">
                     <form className="create-product-form" onSubmit={(e) => createProductHandler(e)}>
@@ -37,12 +55,12 @@ function ProductCreate() {
                         <input type="text" className="form-input" id="wine-price" name="price" />
                         <label htmlFor="wine-type">Category<span className="required">*</span></label>
                         <select name="category">
-                            <option value="red">Red</option>
-                            <option value="white">White</option>
-                            <option value="rose">Rose</option>
-                            <option value="sparkling">Sparkling</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="fortified">Fortified</option>
+                            <option value={'Red'}>Red</option>
+                            <option value={'White'}>White</option>
+                            <option value={'Rosé'}>Rosé</option>
+                            <option value={'Sparkling'}>Sparkling</option>
+                            <option value={'Dessert'}>Dessert</option>
+                            <option value={'Fortified'}>Fortified</option>
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-img" name="image" />

@@ -14,7 +14,7 @@ function Comments({ comments }) {
                         .map(c => <Comment key={c.createdAt} comment={c} />)
                 )
                 : <div className="comment">
-                    <p><span className="content">There are no comment yet...</span></p>
+                    <p className="comment-content">There are no comments yet...</p>
                 </div>
             }
         </section>

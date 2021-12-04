@@ -64,7 +64,7 @@ function App() {
               logout(auth);
               return <Redirect to="/" />
             }} />
-            <Route path="*" component={ErrorPage} />
+            <Route component={ErrorPage} />
           </Switch>
         </main>
 

@@ -7,7 +7,7 @@ function authorization(user) {
         isLoggedIn = true;
     }
 
-    if (user?.uid === 's4ByKLPQlyWPJeMRydFM2XmFOSw1') {
+    if (user?.uid === 'GZ6ZSEzc5VRUjR2Ygh1VsSje9mx2') {
         isAdmin = true;
     }
 

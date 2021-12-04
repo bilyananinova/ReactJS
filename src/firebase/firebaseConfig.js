@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCtRtPS_rtJVw2VGoPEnx-vkGTeRrbch_A",
-    authDomain: "wine-store-c01dd.firebaseapp.com",
-    projectId: "wine-store-c01dd",
-    storageBucket: "wine-store-c01dd.appspot.com",
-    messagingSenderId: "317300468114",
-    appId: "1:317300468114:web:0724e3fa7d5ee53cae394b"
+    apiKey: "AIzaSyDrzYwanSFfhlY9GvdTWHPDlJ_ZOvUUqEI",
+    authDomain: "wine-store2.firebaseapp.com",
+    projectId: "wine-store2",
+    storageBucket: "wine-store2.appspot.com",
+    messagingSenderId: "615173989294",
+    appId: "1:615173989294:web:025d212054caf2e3939e3f"
 };
 
 // init firebase app

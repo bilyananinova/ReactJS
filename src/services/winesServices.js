@@ -38,16 +38,18 @@ function createWine(title, description, price, category, image, createdAt) {
         .then(wine => {
             return wine
         })
+        .catch(err => {
+            console.error(err);
+        });
 }
 
-function editWine(wineId, title, description, price, category, image) {
+function editWine(wineId, title, description, price, image) {
     let wineRef = doc(db, 'wines', wineId);
 
     return updateDoc(wineRef, {
         title,
         description,
         price,
-        category,
         image
     })
         .then(result => {

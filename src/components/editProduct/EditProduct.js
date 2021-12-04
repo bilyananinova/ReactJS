@@ -18,17 +18,15 @@ function EditProduct({ match }) {
 
     }, [id]);
 
-
     function editProductHandler(e) {
         e.preventDefault();
 
         let title = e.target.title.value;
         let description = e.target.description.value;
         let price = e.target.price.value;
-        let category = e.target.type.value;
         let image = e.target.image.value;
 
-        editWine(id, title, description, price, category, image)
+        editWine(id, title, description, price, image)
         .then(() => {
             history.push(`/wine-catalog/${id}/details`);
         })
@@ -47,13 +45,8 @@ function EditProduct({ match }) {
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-price" name="price" defaultValue={wine.price} />
                         <label htmlFor="wine-type">Type<span className="required">*</span></label>
-                        <select name="type">
-                            <option value="red">Red</option>
-                            <option value="white">White</option>
-                            <option value="rose">Rose</option>
-                            <option value="sparkling">Sparkling</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="fortified">Fortified</option>
+                        <select name="type" disabled>
+                            <option value={wine.category} >{wine.category}</option>
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-img" name="image" defaultValue={wine.image} />

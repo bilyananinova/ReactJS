@@ -19,9 +19,11 @@ function Blog() {
             <section className="blog-wrapper">
                 <div className="blog">
 
-                    {articles.map(a =>
-                        <BlogArticleCard key={a.id} article={a} />
-                    )}
+                    {articles
+                        .sort((a, b) => b.createdAt - a.createdAt)
+                        .map(a =>
+                            <BlogArticleCard key={a.id} article={a} />
+                        )}
 
                 </div>
 

@@ -1,0 +1,15 @@
+.container {
+    background-color: #9d0551;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0.3em;
+    padding: 0.5em;
+}
+
+.warning {
+    color: #ffffff;
+}

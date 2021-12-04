@@ -2,34 +2,27 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
 
-function register(name, email, password, rePassword) {
-
-    if (name === '' || email === '' || password === '') {
-        throw new Error('All fields are required')
-    }
-
-    if (password.length < 6) {
-        throw new Error('Password must be at least 6 characters long')
-    }
-
-    if (password !== rePassword) {
-        throw new Error('Password missmatch!')
-    }
+function register(name, email, password) {
 
     return createUserWithEmailAndPassword(auth, email, password)
         .then(cred => {
-            cred.user.displayName = name;
+            if (cred) {
+                cred.user.displayName = name;
 
-            setDoc(doc(db, "users", cred.user.uid), {
-                displayName: cred.user.displayName,
-                email: cred.user.email,
-                cart: []
-            });
-            
-            return cred.user.currentUser
+                setDoc(doc(db, "users", cred.user.uid), {
+                    name: cred.user.displayName,
+                    email: cred.user.email,
+                    cart: []
+                });
+
+                return cred.user.currentUser
+            } else {
+                throw new Error('Wrong username or password');
+            }
         })
         .catch(err => {
             console.error(err.message);
+            throw new Error('Wrong username or password');
         })
 }
 
@@ -45,6 +38,7 @@ function login(email, password) {
         })
         .catch(err => {
             console.error(err.message);
+            throw new Error('Wrong email or password');
         })
 }
 

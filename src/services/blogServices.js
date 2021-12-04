@@ -30,6 +30,9 @@ function createArticle(title, content, image, createdAt) {
         .then(article => {
             return article;
         })
+        .catch(err => {
+            console.error(err);
+        });
 }
 
 function editArticle(articleId, title, content, image) {
