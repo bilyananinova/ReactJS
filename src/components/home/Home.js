@@ -18,10 +18,7 @@ function Home() {
     return (
         <>
             <section className="home-wrapper">
-
-                <div className="banner">
-                    <h2>From the blog</h2>
-                </div>
+                <h3>From the blog</h3>
                 <section className="last-articles">
 
                     {articles.map(article =>

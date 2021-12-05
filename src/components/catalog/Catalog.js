@@ -1,41 +1,43 @@
 import './Catalog.css';
 import React from 'react';
-import { Link, } from 'react-router-dom';
 import { getAllWines } from "../../services/winesServices";
 import CatalogProductCart from "./CatalogProductCard";
 
 function Catalog({ match }) {
     let [wines, setWines] = React.useState([]);
+    let [category, setCategory] = React.useState('');
 
     React.useEffect(() => {
         getAllWines()
             .then(wines => {
-                if (match.params.category) {
-                    wines = wines.filter(w => w.category == match.params.category);
+                if (category) {
+                    wines = wines.filter(w => w.category == category);
                 }
                 setWines(wines);
             })
-    }, [wines, match.params.category]);
+    }, [category]);
 
     return (
+
         <>
             <h3>Our Wines</h3>
             <section className="products-wrapper">
                 <aside className="products-aside">
                     <h6>Product categories</h6>
                     <ul>
-                        <li><Link to={`${match.url}/red`} >Red Wine</Link></li>
-                        <li><Link to={`${match.url}/white`}>White Wine</Link></li>
-                        <li><Link to={`${match.url}/rose`}>Rose Wine</Link></li>
-                        <li><Link to={`${match.url}/sparkling`}>Sparkling</Link></li>
-                        <li><Link to={`${match.url}/dessert`}>Dessert</Link></li>
-                        <li><Link to={`${match.url}/fortified`}>Fortified</Link></li>
+                        <li onClick={() => setCategory('red')}>Red Wine</li>
+                        <li onClick={() => setCategory('white')}>White Wine</li>
+                        <li onClick={() => setCategory('rose')}>Rose Wine</li>
+                        <li onClick={() => setCategory('sparkling')}>Sparkling</li>
+                        <li onClick={() => setCategory('dessert')}>Dessert</li>
+                        <li onClick={() => setCategory('fortified')}>Fortified</li>
                     </ul>
                 </aside>
                 <section className="products-list">
 
                     {
                         wines
+                            .sort((a, b) => b.createdAt - a.createdAt)
                             .map(w =>
                                 <CatalogProductCart
                                     key={w.id}

@@ -47,6 +47,7 @@ function editWine(wineId, title, description, price, image) {
     let wineRef = doc(db, 'wines', wineId);
 
     return updateDoc(wineRef, {
+        id: wineId,
         title,
         description,
         price,

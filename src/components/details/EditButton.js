@@ -1,7 +1,7 @@
 import './EditButton.css'
 import { Link } from "react-router-dom";
 
-function EditButton(id) {
+function EditButton({id}) {
     return (
         <Link
             to={`/wine-catalog/${id}/edit`}

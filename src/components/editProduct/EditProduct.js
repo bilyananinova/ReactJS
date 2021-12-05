@@ -8,12 +8,12 @@ function EditProduct({ match }) {
     let history = useHistory();
 
     let id = match.params.wineId;
-    
+
     React.useEffect(() => {
 
         getOne(id)
             .then(wine => {
-                setWine(wine.data());
+                setWine({...wine.data(), id: id});
             })
 
     }, [id]);
@@ -27,11 +27,11 @@ function EditProduct({ match }) {
         let image = e.target.image.value;
 
         editWine(id, title, description, price, image)
-        .then(() => {
-            history.push(`/wine-catalog/${id}/details`);
-        })
+            .then(() => {
+                history.push(`/wine-catalog/${id}/details`);
+            })
     }
-    
+
     return (
         <>
             <h3>Edit Wine</h3>

@@ -7,7 +7,7 @@ import UserNav from "./UserNav";
 
 function Header() {
     let user = React.useContext(UserContext);
-    
+console.log(user);
     return (
         <>
             <header className="site-header">
@@ -22,9 +22,9 @@ function Header() {
                         <li><strong>Phone:</strong>+359 888 000 000</li>
                         <li><strong>Email:</strong>email@mail.bg</li>
 
-                        {user.isLoggedIn
+                        {user?.isLogged
                             ? <li className="cart">
-                                <Link to="#">
+                                <Link to="/cart">
                                     <i className="fas fa-shopping-bag"></i>
                                     <span className="cart-count">0</span>
                                 </Link>
@@ -43,13 +43,13 @@ function Header() {
                     <Link to="/wine-catalog">Shop</Link>
                     <Link to="/articles">Blog</Link>
 
-                    {user.isAdmin ?
+                    {user?.isAdmin ?
                         <> <Link to="/wine-catalog/create">Create product</Link>
                             <Link to="/articles/create">Create article</Link>
                         </>
                         : ""}
                 </div>
-                {user.isLoggedIn ? <UserNav /> : <GuestNav />}
+                {user?.isLogged ? <UserNav /> : <GuestNav />}
 
             </nav>
 

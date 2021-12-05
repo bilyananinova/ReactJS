@@ -39,6 +39,7 @@ function editArticle(articleId, title, content, image) {
     let articleRef = doc(db, 'articles', articleId);
 
     return updateDoc(articleRef, {
+        id: articleId,
         title,
         content,
         image

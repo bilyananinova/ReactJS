@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { auth } from './firebase/firebaseConfig';
 import { logout } from './services/authService';
-import authorization from './authorization';
+import { getUser } from "./services/authService";
 import UserContext from "./contexts/UserContext";
 
 import Header from './components/common/Header';
@@ -32,14 +32,31 @@ function App() {
   let [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
-    auth.onAuthStateChanged(setUser);
-  }, [user]);
+    auth.onAuthStateChanged(user => {
 
-  let authInfo = authorization(user);
+      if (user) {
+        let userId = user.uid;
+        let isAdmin = false;
+
+        if (user?.uid === 'GZ6ZSEzc5VRUjR2Ygh1VsSje9mx2') {
+          isAdmin = true;
+        }
+
+        getUser(user.uid)
+          .then(user => {
+            setUser({ ...user.data(), id: userId, isAdmin, isLogged: true })
+          })
+      } else {
+        setUser(null)
+      }
+
+
+    });
+  }, []);
 
   return (
-    <div className="App">
-      <UserContext.Provider value={authInfo}>
+    <UserContext.Provider value={user}>
+      <div className="App">
 
         <Header />
 
@@ -53,11 +70,12 @@ function App() {
             <Route path="/articles/:articleId" exact component={BlogArticle} />
             <Route path="/articles/:articleId/edit" component={EditArticle} />
 
+            <Route path="/wine-catalog" component={Catalog} />
             <Route path="/wine-catalog/create" component={ProductCreate} />
             <Route path="/wine-catalog/:wineId/edit" component={EditProduct} />
             <Route path="/wine-catalog/:wineId/details" component={Details} />
-            <Route path="/wine-catalog/:category?" exact component={Catalog} />
 
+            <Route path="/cart" component={Cart} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/logout" render={() => {
@@ -70,8 +88,8 @@ function App() {
 
         <Footer />
 
-      </UserContext.Provider>
-    </div>
+      </div>
+    </UserContext.Provider>
   );
 }
 

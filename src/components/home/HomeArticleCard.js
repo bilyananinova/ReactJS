@@ -5,10 +5,10 @@ function HomeArticleCard({ article }) {
 
     return (
         <>
-            <Link to={`articles/${article.id}`}>
+            <Link to={`/articles/${article.id}`}>
                 <section className="home-article">
                     <section className="home-article-image">
-                        <img src={article.image} alt="" />
+                        <img src={article.image} alt={article.title} />
                     </section>
                     <header className="home-article-header">
                         <h6>{article.title}</h6>

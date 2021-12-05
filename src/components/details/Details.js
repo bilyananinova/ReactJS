@@ -20,7 +20,7 @@ function Details({ match }) {
     React.useEffect(() => {
         getOne(id)
             .then(wine => {
-                setWine(wine.data());
+                setWine({ ...wine.data(), id: id });
                 setComments(wine.data().comments)
             })
     }, [id, comments]);
@@ -54,8 +54,8 @@ function Details({ match }) {
 
                         {user.isLoggedIn && user.isAdmin
                             ? <div className="details-action">
-                                <AddButton /> 
-                                <EditButton id={id} /> 
+                                <AddButton />
+                                <EditButton id={wine.id} />
                                 <DeleteButton deleteHandler={deleteHandler} />
                             </div>
                             : ""}

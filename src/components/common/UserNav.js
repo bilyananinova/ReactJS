@@ -8,7 +8,7 @@ function UserNav() {
 
     return (
         <div className="user">
-            <Link to="/">Welcome, {user.currentUser.email}!</Link>
+            <Link to="/">Welcome, {user.name}!</Link>
             <Link to="/logout" >Logout</Link>
         </div>
     );

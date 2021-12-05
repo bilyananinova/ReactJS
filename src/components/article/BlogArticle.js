@@ -18,7 +18,7 @@ function BlogArticle({
             .then(article => {
                 setArticle({ ...article.data(), id: id });
             })
-    }, [article]);
+    }, [article, id]);
 
     return (
         <article className="blog-article">

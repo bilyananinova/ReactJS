@@ -54,13 +54,13 @@ function ProductCreate() {
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-price" name="price" />
                         <label htmlFor="wine-type">Category<span className="required">*</span></label>
-                        <select name="category">
-                            <option value={'Red'}>Red</option>
-                            <option value={'White'}>White</option>
-                            <option value={'Rosé'}>Rosé</option>
-                            <option value={'Sparkling'}>Sparkling</option>
-                            <option value={'Dessert'}>Dessert</option>
-                            <option value={'Fortified'}>Fortified</option>
+                        <select name="category" >
+                            <option value="red">Red</option>
+                            <option value="white">White</option>
+                            <option value="rosé">Rosé</option>
+                            <option value="sparkling">Sparkling</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="fortified">Fortified</option>
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-img" name="image" />
