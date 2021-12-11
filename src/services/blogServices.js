@@ -16,6 +16,7 @@ function getAllArticles() {
         })
         .catch(err => {
             console.error(err);
+            throw err;
         });
 
 }
@@ -25,13 +26,14 @@ function getOneArticle(id) {
     return getDoc(articleRef);
 }
 
-function createArticle(title, content, image, createdAt) {
-    return addDoc(articlesRef, { title, content, image, createdAt })
+function createArticle(title, content, image, createdAt, creator) {
+    return addDoc(articlesRef, { title, content, image, createdAt, creator })
         .then(article => {
             return article;
         })
         .catch(err => {
             console.error(err);
+            throw err;
         });
 }
 
@@ -49,6 +51,7 @@ function editArticle(articleId, title, content, image) {
         })
         .catch(err => {
             console.error(err);
+            throw err;
         })
 }
 
@@ -70,6 +73,7 @@ function lastArticles() {
         })
         .catch(err => {
             console.error(err);
+            throw err;
         });
 
 }

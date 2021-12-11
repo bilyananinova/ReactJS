@@ -1,12 +1,12 @@
 import './EditProduct.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { editWine, getOne } from "../../services/winesServices";
 
 function EditProduct({ match }) {
     let [wine, setWine] = React.useState({});
     let history = useHistory();
-
     let id = match.params.wineId;
 
     React.useEffect(() => {

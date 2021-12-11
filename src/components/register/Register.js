@@ -1,7 +1,9 @@
 import './Register.css';
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import { register } from "../../services/authService";
+
 import ErrorMsg from "../error/ErrorMsg";
 
 function Register() {

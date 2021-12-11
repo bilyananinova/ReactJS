@@ -1,13 +1,15 @@
 import './Header.css';
 import React from 'react';
 import { Link } from "react-router-dom";
+
 import UserContext from "../../contexts/UserContext";
+
 import GuestNav from "./GuestNav";
 import UserNav from "./UserNav";
 
 function Header() {
     let user = React.useContext(UserContext);
-console.log(user);
+    
     return (
         <>
             <header className="site-header">
@@ -26,7 +28,7 @@ console.log(user);
                             ? <li className="cart">
                                 <Link to="/cart">
                                     <i className="fas fa-shopping-bag"></i>
-                                    <span className="cart-count">0</span>
+                                    <span className="cart-count">{user?.cart.length}</span>
                                 </Link>
                             </li>
                             : ""

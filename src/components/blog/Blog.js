@@ -1,6 +1,8 @@
 import './Blog.css';
 import React from 'react';
+
 import { getAllArticles } from "../../services/blogServices";
+
 import BlogArticleCard from './BlogArticleCard';
 
 function Blog() {
@@ -11,7 +13,7 @@ function Blog() {
             .then(articles => {
                 setArticles(articles);
             })
-    }, [articles]);
+    }, []);
 
     return (
         <>

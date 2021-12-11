@@ -1,10 +1,11 @@
 import './Details.css';
 import React from 'react';
+
+import { getOne } from '../../services/winesServices';
+import UserContext from "../../contexts/UserContext";
+
 import Comments from '../comments/Comments';
 import CreateComment from '../createComment/CreateComment';
-import { useHistory } from "react-router-dom";
-import { getOne, deleteWine } from '../../services/winesServices';
-import UserContext from "../../contexts/UserContext";
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import AddButton from './AddButton';
@@ -12,10 +13,8 @@ import AddButton from './AddButton';
 function Details({ match }) {
     let [wine, setWine] = React.useState({});
     let [comments, setComments] = React.useState([]);
-
     let user = React.useContext(UserContext);
     let id = match.params.wineId;
-    let history = useHistory();
 
     React.useEffect(() => {
         getOne(id)
@@ -23,12 +22,7 @@ function Details({ match }) {
                 setWine({ ...wine.data(), id: id });
                 setComments(wine.data().comments)
             })
-    }, [id, comments]);
-
-    function deleteHandler(e) {
-        deleteWine(id);
-        history.push('/wine-catalog');
-    }
+    }, [comments, id]);
 
     return (
         <>
@@ -46,17 +40,17 @@ function Details({ match }) {
                         <span className="details-price">{wine.price}$</span>
                         <p>{wine.description}</p>
 
-                        {user.isLoggedIn && !user.isAdmin
+                        {user?.isLogged && !user.isAdmin
                             ? <div className="details-action">
                                 <AddButton />
                             </div>
                             : ""}
 
-                        {user.isLoggedIn && user.isAdmin
+                        {user?.isLogged && user.isAdmin
                             ? <div className="details-action">
                                 <AddButton />
-                                <EditButton id={wine.id} />
-                                <DeleteButton deleteHandler={deleteHandler} />
+                                <EditButton id={id} />
+                                <DeleteButton wine={wine} />
                             </div>
                             : ""}
 
@@ -68,7 +62,7 @@ function Details({ match }) {
             <Comments comments={comments} />
 
             {
-                user.isLoggedIn
+                user?.isLogged
                     ? <CreateComment id={id} />
                     : ""
             }

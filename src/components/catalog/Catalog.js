@@ -1,9 +1,11 @@
 import './Catalog.css';
 import React from 'react';
+
 import { getAllWines } from "../../services/winesServices";
+
 import CatalogProductCart from "./CatalogProductCard";
 
-function Catalog({ match }) {
+function Catalog() {
     let [wines, setWines] = React.useState([]);
     let [category, setCategory] = React.useState('');
 
@@ -11,11 +13,11 @@ function Catalog({ match }) {
         getAllWines()
             .then(wines => {
                 if (category) {
-                    wines = wines.filter(w => w.category == category);
+                    wines = wines.filter(w => w.category === category);
                 }
                 setWines(wines);
             })
-    }, [category]);
+        }, [wines, category]);
 
     return (
 

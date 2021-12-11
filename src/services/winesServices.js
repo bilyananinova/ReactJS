@@ -16,6 +16,7 @@ function getAllWines(setWines) {
         })
         .catch(err => {
             console.error(err);
+            throw err;
         });
 
     // onSnapshot(winesRef, (snapshot) => {
@@ -33,13 +34,14 @@ function getOne(id) {
     return getDoc(wineRef)
 }
 
-function createWine(title, description, price, category, image, createdAt) {
-    return addDoc(winesRef, { title, description, price, category, image, createdAt })
+function createWine(title, description, price, category, image, createdAt, creator) {
+    return addDoc(winesRef, { title, description, price, category, image, createdAt, creator, comments: [] })
         .then(wine => {
             return wine
         })
         .catch(err => {
             console.error(err);
+            throw err;
         });
 }
 
@@ -58,6 +60,7 @@ function editWine(wineId, title, description, price, image) {
         })
         .catch(err => {
             console.error(err);
+            throw err;
         })
 }
 

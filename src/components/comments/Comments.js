@@ -1,8 +1,9 @@
 import './Comments.css';
+
 import Comment from "./Comment";
 
 function Comments({ comments }) {
-
+    
     return (
 
         <section className="commentSection">
@@ -11,7 +12,7 @@ function Comments({ comments }) {
                 ? (
                     comments
                         .sort((a, b) => b.createdAt - a.createdAt)
-                        .map(c => <Comment key={c.createdAt} comment={c} />)
+                        .map(c => <Comment key={comments.indexOf(c)} comment={c} />)
                 )
                 : <div className="comment">
                     <p className="comment-content">There are no comments yet...</p>

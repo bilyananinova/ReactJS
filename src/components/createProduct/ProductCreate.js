@@ -1,10 +1,23 @@
 import './ProductCreate.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { createWine } from "../../services/winesServices";
+import UserContext from "../../contexts/UserContext";
+
 import ErrorMsg from "../error/ErrorMsg";
 
+let categories = [
+    { value: 'red', text: 'Red' },
+    { value: 'white', text: 'White' },
+    { value: 'rosé', text: 'Rosé' },
+    { value: 'sparkling', text: 'Sparkling' },
+    { value: 'dessert', text: 'Dessert' },
+    { value: 'fortified', text: 'Fortified' },
+]
+
 function ProductCreate() {
+    let user = React.useContext(UserContext);
     let [error, setError] = React.useState('');
     let history = useHistory();
 
@@ -17,20 +30,21 @@ function ProductCreate() {
         let category = e.target.category.value;
         let image = e.target.image.value;
         let createdAt = Date.now();
+        let creator = user?.id;
 
         if (!title || !description || !price || !image) {
             return setError('All fields are required!');
         }
 
         if (title.length < 10) {
-            return setError('Title must be at least 10 characters long!');
+            return setError('Title should be at least 10 characters!');
         }
 
         if (description.length < 50) {
-            return setError('Description must be at least 0 characters long!');
+            return setError('Description must be at least 50 characters long!');
         }
 
-        createWine(title, description, price, category, image, createdAt)
+        createWine(title, description, price, category, image, createdAt, creator)
             .then(() => {
                 e.target.reset();
                 history.push('/wine-catalog');
@@ -55,12 +69,9 @@ function ProductCreate() {
                         <input type="text" className="form-input" id="wine-price" name="price" />
                         <label htmlFor="wine-type">Category<span className="required">*</span></label>
                         <select name="category" >
-                            <option value="red">Red</option>
-                            <option value="white">White</option>
-                            <option value="rosé">Rosé</option>
-                            <option value="sparkling">Sparkling</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="fortified">Fortified</option>
+                            {categories.map(c => {
+                                return <option value={c.value} key={c.value}>{c.text}</option>
+                            })}
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-img" name="image" />

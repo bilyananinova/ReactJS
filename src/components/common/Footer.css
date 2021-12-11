@@ -9,6 +9,7 @@
     display: flex;
     background-color: #202020;
     color: #ffffff;
+    position: relative;
 }
 
 .site-footer section {
@@ -52,5 +53,4 @@
 
 .copyright a{
     color: #9D0552;
-
 }

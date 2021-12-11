@@ -1,11 +1,15 @@
 import './BlogArticleCreate.css';
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { createArticle } from "../../services/blogServices";
+import UserContext from "../../contexts/UserContext";
+
 import ErrorMsg from "../error/ErrorMsg";
 
 function BlogArticleCreate() {
     let [error, setError] = React.useState('');
+    let user = React.useContext(UserContext);
     let history = useHistory();
 
     function articleHandler(e) {
@@ -15,12 +19,13 @@ function BlogArticleCreate() {
         let content = e.target.content.value;
         let image = e.target.image.value;
         let createdAt = Date.now();
+        let creator = user.id;
 
         if (!title || !content || !image) {
             return setError('All fields are required!');
         }
 
-        createArticle(title, content, image, createdAt)
+        createArticle(title, content, image, createdAt, creator)
             .then(() => {
                 e.target.reset();
                 history.push('/articles');

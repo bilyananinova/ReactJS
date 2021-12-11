@@ -1,16 +1,16 @@
 import './BlogArticle.css'
 import React from 'react';
-import AdminBtns from './AdminBtns';
+
 import { getOneArticle } from "../../services/blogServices";
 import UserContext from "../../contexts/UserContext";
+
+import AdminBtns from './AdminBtns';
 
 function BlogArticle({
     match
 }) {
     let user = React.useContext(UserContext);
-
     let [article, setArticle] = React.useState([]);
-
     let id = match.params.articleId;
 
     React.useEffect(() => {

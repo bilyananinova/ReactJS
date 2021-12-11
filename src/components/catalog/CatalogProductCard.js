@@ -1,15 +1,13 @@
 import "./CatalogProductCard.css";
 import React from 'react';
 import { Link } from "react-router-dom";
-import { deleteWine } from '../../services/winesServices';
+
 import UserContext from "../../contexts/UserContext";
+import AdminBtns from "./AdminBtns";
+import UserBtns from "./UserBtns";
 
 function CatalogProductCart({ wine }) {
     let user = React.useContext(UserContext);
-
-    function deleteHandler() {
-        deleteWine(wine.id)
-    }
 
     return (
         <section className="product-card">
@@ -37,33 +35,15 @@ function CatalogProductCart({ wine }) {
                     </Link>
 
                     {
-                        user.isLoggedIn
-                            ? < button
-                                className="add-btn" >
-                                <i className="fas fa-shopping-cart"></i>
-                            buy
-                        </button>
+                        user?.isLogged
+                            ? <UserBtns wine={wine} />
                             : ""
                     }
 
-
                     {
-                        user.isAdmin
+                        user?.isAdmin
                             ?
-                            <>
-                                <Link
-                                    to={`/wine-catalog/${wine.id}/edit`}
-                                    className="edit-btn">
-                                    <i className="fas fa-edit"></i>
-                                    edit
-                                 </Link>
-                                <button
-                                    onClick={deleteHandler}
-                                    className="delete-btn" >
-                                    <i className="fas fa-trash-alt"></i>
-                                    delete
-                                </button>
-                            </>
+                            <AdminBtns wine={wine} />
                             : ""
                     }
 

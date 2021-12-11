@@ -1,0 +1,29 @@
+.edit-btn,
+.delete-btn {
+    border: 1px solid #9D0552;
+    padding: 0.5em 0.8em;
+    border-radius: 0.3em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #9D0552;
+    margin-right: 0.8em;
+}
+
+.delete-btn {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.product-action .edit-btn:hover,
+.product-action .delete-btn:hover {
+    border-color: #9d0551b4;
+    color: #000000;
+    box-shadow: 0px 0px 5px 1px #9d0551b4;
+}
+
+.product-action .edit-btn:hover {
+    background: #ffe600;    
+}
+
+.product-action .delete-btn:hover {
+    background: #ff0000;
+}

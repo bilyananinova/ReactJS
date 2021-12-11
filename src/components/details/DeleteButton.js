@@ -1,6 +1,15 @@
 import './DeleteButton.css';
+import { useHistory } from "react-router-dom";
 
-function DeleteButton({deleteHandler}) {
+import { deleteWine } from '../../services/winesServices';
+
+function DeleteButton({ wine }) {
+    let history = useHistory();
+    
+    function deleteHandler(e) {
+        deleteWine(wine.id);
+        history.push('/wine-catalog');
+    }
     return (
         <button
             onClick={deleteHandler}

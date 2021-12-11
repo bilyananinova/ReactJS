@@ -1,10 +1,9 @@
 import './ErrorMsg.css'
 
-function ErrorMsg(error) {
-    console.log(error);
+function ErrorMsg({ error }) {
     return (
         <div className="container">
-            <p className= "warning">{error.error}</p>
+            <p className="warning">{error}</p>
         </div>
     )
 }

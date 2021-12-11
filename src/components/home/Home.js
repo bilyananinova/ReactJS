@@ -1,8 +1,9 @@
 import './Home.css';
-import HomeArticleCard from './HomeArticleCard';
 import React from 'react';
 
 import { lastArticles } from '../../services/blogServices';
+
+import HomeArticleCard from './HomeArticleCard';
 
 function Home() {
     let [articles, setArticles] = React.useState([]);
