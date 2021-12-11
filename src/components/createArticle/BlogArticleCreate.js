@@ -14,7 +14,8 @@ function BlogArticleCreate() {
 
     function articleHandler(e) {
         e.preventDefault();
-
+        
+        setError('');
         let title = e.target.title.value;
         let content = e.target.content.value;
         let image = e.target.image.value;

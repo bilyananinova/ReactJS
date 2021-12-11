@@ -1,4 +1,4 @@
-import { doc, updateDoc, arrayUnion, getDoc} from "firebase/firestore";
+import { doc, updateDoc, arrayUnion} from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
 function createComment(id, author, content, createdAt, creator) {

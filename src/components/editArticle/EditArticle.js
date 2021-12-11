@@ -4,11 +4,14 @@ import { useHistory } from "react-router-dom";
 
 import { editArticle, getOneArticle } from "../../services/blogServices";
 
+import ErrorMsg from "../error/ErrorMsg";
+
 function EditArticle({ match }) {
     let [article, setArticle] = React.useState({});
+    let [error, setError] = React.useState('');
     let history = useHistory();
-
     let id = match.params.articleId;
+
     React.useEffect(() => {
 
         getOneArticle(id)
@@ -21,9 +24,14 @@ function EditArticle({ match }) {
     function editArticleHandler(e) {
         e.preventDefault();
 
+        setError('');
         let title = e.target.title.value;
         let content = e.target.content.value;
         let image = e.target.image.value;
+
+        if (!title || !content || !image) {
+            return setError('All fields are required!');
+        }
 
         editArticle(id, title, content, image)
             .then(() => {
@@ -34,6 +42,7 @@ function EditArticle({ match }) {
     return (
         <>
             <h3>Edit Article</h3>
+            {error ? <ErrorMsg error={error} /> : ""}
             <div className="form-wrapper create-article">
                 <section className="form-section edit-article-section">
                     <form className="edit-article-form" onSubmit={(e) => editArticleHandler(e)}>

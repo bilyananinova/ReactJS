@@ -6,15 +6,19 @@ import UserContext from "../../contexts/UserContext";
 
 function Comments({ id }) {
     let user = React.useContext(UserContext);
-    let [author, setAuthor] = React.useState(user.name);
+    let [error, setError] = React.useState('');
     let [content, setContent] = React.useState('');
-    let [createdAt, setCreatedAt] = React.useState(Date.now());
-    let [creator, setCreator] = React.useState(user.id);
 
     function commentHandler(e) {
         e.preventDefault();
-        
-        createComment(id, author, content, createdAt, creator);
+
+        if (!content) {
+            return setError('Please, write your comment');
+        } else {
+            setError('');
+        }
+
+        createComment(id, user?.name, content, Date.now(), user?.id);
         e.target.reset();
     }
 
@@ -24,9 +28,10 @@ function Comments({ id }) {
             ? < form className="commentForm" onSubmit={(e) => commentHandler(e)} >
                 <h5>Add a review</h5>
                 <label htmlFor="author">From:</label>
-                <input type="text" name="author" id="author" defaultValue={user.name} disabled />
+                <input type="text" name="author" id="author" defaultValue={user?.name} disabled />
                 <label htmlFor="content">Comment:</label>
-                <textarea name="content" id="content" placeholder="Leave a comment..." cols="5" rows="2" onChange={e => setContent(e.target.value)}/>
+                <textarea name="content" id="content" placeholder="Leave a comment..." cols="5" rows="2" onBlur={e => setContent(e.target.value)} />
+                {Boolean(error) ? <span>{error}</span> : ''}
                 <input type="submit" value={"Create comment"} />
             </form >
             : ""

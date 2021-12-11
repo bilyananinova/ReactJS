@@ -16,7 +16,7 @@ function Cart() {
                 return acc += Number(cur.price);
             }, 0));
         }
-    })
+    }, [user, cart])
 
 
 

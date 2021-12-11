@@ -8,12 +8,12 @@ import UserContext from "../../contexts/UserContext";
 import ErrorMsg from "../error/ErrorMsg";
 
 let categories = [
-    { value: 'red', text: 'Red' },
-    { value: 'white', text: 'White' },
-    { value: 'rosé', text: 'Rosé' },
-    { value: 'sparkling', text: 'Sparkling' },
-    { value: 'dessert', text: 'Dessert' },
-    { value: 'fortified', text: 'Fortified' },
+    { value: 'Red', text: 'Red' },
+    { value: 'White', text: 'White' },
+    { value: 'Rosé', text: 'Rosé' },
+    { value: 'Sparkling', text: 'Sparkling' },
+    { value: 'Dessert', text: 'Dessert' },
+    { value: 'Fortified', text: 'Fortified' },
 ]
 
 function ProductCreate() {
@@ -23,7 +23,8 @@ function ProductCreate() {
 
     function createProductHandler(e) {
         e.preventDefault();
-
+        
+        setError('');
         let title = e.target.title.value;
         let description = e.target.description.value;
         let price = Number(e.target.price.value);
@@ -64,13 +65,17 @@ function ProductCreate() {
                         <label htmlFor="wine-title">Title<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-title" name="title" />
                         <label htmlFor="wine-description">Description<span className="required">*</span></label>
-                        <textarea cols="50" rows="5" id="wine-description" name="description"></textarea>
+                        <textarea cols="50" rows="5" id="wine-description" name="description" />
                         <label htmlFor="wine-price">Price<span className="required">*</span></label>
                         <input type="text" className="form-input" id="wine-price" name="price" />
                         <label htmlFor="wine-type">Category<span className="required">*</span></label>
-                        <select name="category" >
+                        <select name="category"  >
                             {categories.map(c => {
-                                return <option value={c.value} key={c.value}>{c.text}</option>
+                                return <option
+                                    value={c.value}
+                                    key={c.value}>
+                                    {c.text}
+                                </option>
                             })}
                         </select>
                         <label htmlFor="wine-img">Image<span className="required">*</span></label>

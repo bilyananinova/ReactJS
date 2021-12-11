@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
                 setIsLogged(true);
                 let userId = user.uid;
 
-                if (userId === 'TuzwqmYdT8WQdiz73DdeW9zRQ3H2') {
+                if (userId === 'ICSVrnbQ9KbKpZiaF2QTR4Mwcjw1') {
                     setIsAdmin(true);
                 }
 

@@ -4,8 +4,11 @@ import { useHistory } from "react-router-dom";
 
 import { editWine, getOne } from "../../services/winesServices";
 
+import ErrorMsg from "../error/ErrorMsg";
+
 function EditProduct({ match }) {
     let [wine, setWine] = React.useState({});
+    let [error, setError] = React.useState('');
     let history = useHistory();
     let id = match.params.wineId;
 
@@ -13,7 +16,7 @@ function EditProduct({ match }) {
 
         getOne(id)
             .then(wine => {
-                setWine({...wine.data(), id: id});
+                setWine({ ...wine.data(), id: id });
             })
 
     }, [id]);
@@ -21,10 +24,23 @@ function EditProduct({ match }) {
     function editProductHandler(e) {
         e.preventDefault();
 
+        setError('');
         let title = e.target.title.value;
         let description = e.target.description.value;
         let price = e.target.price.value;
         let image = e.target.image.value;
+
+        if (!title || !description || !price || !image) {
+            return setError('All fields are required!');
+        } 
+
+        if (title.length < 10) {
+            return setError('Title should be at least 10 characters!');
+        }
+
+        if (description.length < 50) {
+            return setError('Description must be at least 50 characters long!');
+        }
 
         editWine(id, title, description, price, image)
             .then(() => {
@@ -35,6 +51,7 @@ function EditProduct({ match }) {
     return (
         <>
             <h3>Edit Wine</h3>
+            {error ? <ErrorMsg error={error} /> : ""}
             <div className="form-wrapper edit-product">
                 <section className="form-section edit-product-section">
                     <form className="create-product-form" onSubmit={(e) => editProductHandler(e)}>
