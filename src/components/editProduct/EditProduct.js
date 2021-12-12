@@ -18,7 +18,6 @@ function EditProduct({ match }) {
             .then(wine => {
                 setWine({ ...wine.data(), id: id });
             })
-
     }, [id]);
 
     function editProductHandler(e) {

@@ -46,13 +46,13 @@ function editArticle(articleId, title, content, image) {
         content,
         image
     })
-        .then(result => {
-            return result
-        })
-        .catch(err => {
-            console.error(err);
-            throw err;
-        })
+    .then(result => {
+        return result
+    })
+    .catch(err => {
+        console.error(err);
+        throw err;
+    })
 }
 
 function deleteArticle(articleId) {

@@ -11,8 +11,7 @@ function register(name, email, password) {
 
                 setDoc(doc(db, "users", cred.user.uid), {
                     name: cred.user.displayName,
-                    email: cred.user.email,
-                    cart: []
+                    email: cred.user.email
                 });
 
                 return cred.user.currentUser

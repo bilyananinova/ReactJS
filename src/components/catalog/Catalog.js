@@ -10,14 +10,16 @@ function Catalog() {
     let [category, setCategory] = React.useState('');
 
     React.useEffect(() => {
+        let controller = new AbortController();
         getAllWines()
             .then(wines => {
                 if (category) {
                     wines = wines.filter(w => w.category === category);
                 }
                 setWines(wines);
-            })
-        }, [wines, category]);
+            });
+        return () => controller?.abort();
+    }, [wines, category]);
 
     return (
 
@@ -33,6 +35,7 @@ function Catalog() {
                         <li onClick={() => setCategory('sparkling')}>Sparkling</li>
                         <li onClick={() => setCategory('dessert')}>Dessert</li>
                         <li onClick={() => setCategory('fortified')}>Fortified</li>
+                        <li onClick={() => setCategory('')}>All Wines</li>
                     </ul>
                 </aside>
                 <section className="products-list">
@@ -46,7 +49,6 @@ function Catalog() {
                                     wine={w} >
                                 </CatalogProductCart>
                             )
-
                     }
 
                 </section>

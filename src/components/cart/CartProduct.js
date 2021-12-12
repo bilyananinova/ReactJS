@@ -1,19 +1,49 @@
 import './CartProduct.css';
 
-function CartProduct({ wine }) {
+function CartProduct({ product, productIncrease, productDecrease, productDelete }) {
+    let wine = { ...product.wine };
+
+    function productIncreaseHandle() {
+        productIncrease(wine);
+    }
+
+    function productDecreaseHandle() {
+        productDecrease(wine);
+    }
+
+    function productDeleteHandle() {
+        productDelete(wine);
+    }
+
     return (
-        <tr>
-            {/* <td className="cart-image">
+        <section className="order-card">
+            <div className="order-image">
                 <img src={wine.image} alt={wine.title} />
-            </td> */}
-            <td className="cart-title">{wine.title}</td>
-            <td className="cart-price">{wine.price}<span>$</span></td>
-            <td className="cart-quantity">1</td>
-            <td className="cart-subtotal">{wine.price * 1 || 0.00}<span>$</span></td>
-            <td>
-                <button>X</button>
-            </td>
-        </tr>
+            </div>
+            <div className="order-details">
+
+                <header className="order-header">
+                    <h5>{wine.title}</h5>
+                    <p>Category: <span className="order-type">{wine.category}</span></p>
+                </header>
+
+                <span className="order-price">{(wine.totalPrice).toFixed(2)} $</span>
+
+                <div className="order-action">
+                    <div className="btn-minus" onClick={productDecreaseHandle}>
+                        <i className="fas fa-minus"></i>
+                    </div>
+                    <div className="product-qty">{wine.qty}</div>
+                    <div className="btn-plus" onClick={productIncreaseHandle}>
+                        <i className="fas fa-plus"></i>
+                    </div>
+
+                    <button onClick={productDeleteHandle}>Delete</button>
+
+                </div>
+
+            </div>
+        </section >
     )
 }
 

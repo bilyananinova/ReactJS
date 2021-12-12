@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import UserContext from "../../contexts/UserContext";
+
 import AdminBtns from "./AdminBtns";
 import UserBtns from "./UserBtns";
 
@@ -36,7 +37,7 @@ function CatalogProductCart({ wine }) {
 
                     {
                         user?.isLogged
-                            ? <UserBtns wine={wine} />
+                            ? <UserBtns wine={wine} userId={user.id} />
                             : ""
                     }
 

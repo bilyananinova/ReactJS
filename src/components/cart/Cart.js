@@ -1,63 +1,108 @@
 import './Cart.css';
 import React from 'react';
+import { useHistory } from "react-router-dom";
 
 import UserContext from '../../contexts/UserContext';
-import CartProduct from './CartProduct';
+import { getUserCart, updateCart, deleteFromCart } from '../../services/cartService';
+
+import CartProducts from './CartProducts';
+
+let updatedWine;
 
 function Cart() {
     let user = React.useContext(UserContext);
-    let [cart, setCart] = React.useState([]);
-    let [total, setTotal] = React.useState('0.00')
+    let [shoppingCart, setShoppingCart] = React.useState([]);
+    let [show, setShow] = React.useState(false);
+    let history = useHistory();
+    let totalQty = shoppingCart.reduce((acc, cur) => {
+        return acc += Number(cur.wine?.qty);
+    }, 0);
+
+    let totalToPay = shoppingCart.reduce((acc, cur) => {
+        return acc += Number(cur.wine?.totalPrice);
+    }, 0);
 
     React.useEffect(() => {
-        if (user) {
-            setCart(user.cart);
-            setTotal(cart.reduce((acc, cur) => {
-                return acc += Number(cur.price);
-            }, 0));
+
+        getUserCart(user?.id)
+            .then(result => {
+                setShoppingCart(result);
+            });
+
+    }, [user.id]);
+
+    function productIncrease(wine) {
+        updatedWine = wine;
+        updatedWine.qty = Number(updatedWine.qty) + 1;
+        updatedWine.totalPrice = Number(updatedWine.qty) * Number(updatedWine.price);
+
+        updateCart(wine.id, user.id, updatedWine);
+    }
+
+    function productDecrease(wine) {
+        updatedWine = wine;
+        if (wine.qty > 1) {
+            updatedWine.qty = Number(updatedWine.qty) - 1;
+            updatedWine.totalPrice = Number(updatedWine.qty) * Number(updatedWine.price);
+
+            updateCart(wine.id, user.id, updatedWine);
         }
-    }, [user, cart])
+    }
 
+    function productDelete(wine) {
+        deleteFromCart(user.id, wine.id);
+    }
 
+    function clearCart(e) {
+        e.preventDefault();
+        shoppingCart.forEach(product => {
+            deleteFromCart(user.id, product.wine.id);
+        });
+        history.push('/');
+    }
+
+    function showHandler() {
+        setShow(true);
+    }
 
     return (
         <>
             <h3>Shopping Cart</h3>
             <section className="cart-wrapper">
 
-                {cart?.length > 0
-                    ? < table className="cart-order">
-                        <thead>
-                            <tr>
-                                {/* <td colSpan="2">Product</td> */}
-                                <td>Product</td>
-                                <td>Price</td>
-                                <td>Quantity</td>
-                                <td>Subtotal</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {cart.map(w => <CartProduct wine={w} key={w.title} />)}
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td></td>
-                                {/* <td className="total" colSpan="2">Total:</td> */}
-                                <td className="total">Total:</td>
-                                <td className="total" colSpan="2">{total}<span>$</span></td>
-                                <td className="total" colSpan="1">
-                                    <a href="#">Buy</a>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    : <h6>Your shopping cart is empty</h6>}
-            </section>
+                {shoppingCart.length > 0
+                    ? <CartProducts shoppingCart={shoppingCart}
+                        productIncrease={productIncrease}
+                        productDecrease={productDecrease}
+                        productDelete={productDelete} />
+                    : <h6>Your shopping cart is empty</h6>
+                }
+            </section >
+            {
+                !show
+                    ?
+                    <section className="summary-box">
+                        <h4>Cart Summary</h4>
+                        <div>Total Products: <span>{totalQty}</span></div>
+                        <div>Total Price to Pay: <span>{totalToPay.toFixed(2)} $</span></div>
+                        <button onClick={showHandler}>Continue</button>
+                    </section>
+                    :
+                    <section className="checkout-box">
+                        <h4>Checkout</h4>
+                        <div className="personal-info">
+                            <label htmlFor="phone">Phone <span className="required">*</span></label>
+                            <input type="text" className="checkout-input" id="phone" name="phone" placeholder="+359 888 000 000" />
+                            <label htmlFor="address">Address <span className="required">*</span></label>
+                            <input type="text" className="checkout-input" id="address" name="address" placeholder="Street Name & Number, Town, Postcode/Zip" />
+                        </div>
+                        <div>Total Products: <span>{totalQty}</span></div>
+                        <div>Total Price to Pay: <span>{totalToPay.toFixed(2)} $</span></div>
+                        <button onClick={clearCart} >Submit</button>
+                    </section>
+            }
         </>
     );
-
 }
 
 export default Cart;

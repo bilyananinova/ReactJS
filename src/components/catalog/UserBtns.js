@@ -2,14 +2,18 @@ import "./UserBtns.css";
 import React from 'react';
 
 import { addCart } from '../../services/cartService';
-import UserContext from "../../contexts/UserContext";
 
-function UserBtns({ wine }) {
-    let user = React.useContext(UserContext);
+let product;
 
+function UserBtns({ wine, userId }) {
+    
     function cartHandler(e) {
         e.preventDefault();
-        addCart(user.id, wine.title, wine.price, wine.image)
+        product = wine;
+        product['qty'] = 1;
+        product['totalPrice'] = product.qty * product.price;
+
+        addCart(product, userId);
     }
 
     return (

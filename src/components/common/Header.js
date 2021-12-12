@@ -3,13 +3,29 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import UserContext from "../../contexts/UserContext";
+import { getUserCart } from '../../services/cartService';
 
 import GuestNav from "./GuestNav";
 import UserNav from "./UserNav";
 
 function Header() {
     let user = React.useContext(UserContext);
-    
+    let [shoppingCart, setShoppingCart] = React.useState([]);
+    let [totalQty, setTotalQty] = React.useState(0);
+
+    React.useEffect(() => {
+
+        getUserCart(user?.id)
+            .then(result => {
+                setShoppingCart(result)
+                setTotalQty(shoppingCart.reduce((acc, cur) => {
+                    return acc += Number(cur.wine?.qty);
+                }, 0));
+            });
+
+    }, [shoppingCart, user?.id]);
+
+
     return (
         <>
             <header className="site-header">
@@ -24,15 +40,12 @@ function Header() {
                         <li><strong>Phone:</strong>+359 888 000 000</li>
                         <li><strong>Email:</strong>email@mail.bg</li>
 
-                        {user?.isLogged
-                            ? <li className="cart">
-                                <Link to="/cart">
-                                    <i className="fas fa-shopping-bag"></i>
-                                    <span className="cart-count">{user?.cart.length}</span>
-                                </Link>
-                            </li>
-                            : ""
-                        }
+                        <li className="cart">
+                            <Link to="/cart">
+                                <i className="fas fa-shopping-bag"></i>
+                                <span className="cart-count">{totalQty}</span>
+                            </Link>
+                        </li>
 
                     </ul>
                 </section>
