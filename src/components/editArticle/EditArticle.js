@@ -18,6 +18,9 @@ function EditArticle({ match }) {
             .then(article => {
                 setArticle({ ...article.data(), id: id });
             })
+            .catch(err => {
+                console.error(err);
+            });
 
     }, [id]);
 
@@ -30,13 +33,16 @@ function EditArticle({ match }) {
         let image = e.target.image.value;
 
         if (!title || !content || !image) {
-            return setError('All fields are required!');
+            throw new Error('All fields are required!');
         }
 
         editArticle(id, title, content, image)
             .then(() => {
                 history.push(`/articles/${id}`);
             })
+            .catch(err => {
+                console.error(err.message)
+            });
     }
 
     return (

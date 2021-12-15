@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
                 setIsLogged(true);
                 let userId = user.uid;
 
-                if (userId === 'ICSVrnbQ9KbKpZiaF2QTR4Mwcjw1') {
+                if (userId === 'TuzwqmYdT8WQdiz73DdeW9zRQ3H2' || userId === 'ICSVrnbQ9KbKpZiaF2QTR4Mwcjw1') {
                     setIsAdmin(true);
                 }
 
@@ -29,7 +29,8 @@ export function AuthProvider({ children }) {
             }
 
         });
-    }, [user, isAdmin, isLogged]);
+        
+    }, [user, isLogged, isAdmin]);
 
     return (
         <UserContext.Provider value={user}>

@@ -13,6 +13,9 @@ function Home() {
             .then(result => {
                 setArticles(result);
             })
+            .catch(err => {
+                console.error(err);
+            });
 
     }, []);
 
@@ -22,9 +25,12 @@ function Home() {
                 <h3>From the blog</h3>
                 <section className="last-articles">
 
-                    {articles.map(article =>
-                        <HomeArticleCard key={article.id} article={article} />
-                    )}
+                    {articles.length > 0
+                        ? articles.map(article =>
+                            <HomeArticleCard key={article.id} article={article} />
+                        )
+                        : <h1 className="no-content">Sorry, No articles in database...</h1>
+                    }
 
                 </section>
 

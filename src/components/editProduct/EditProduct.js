@@ -18,6 +18,9 @@ function EditProduct({ match }) {
             .then(wine => {
                 setWine({ ...wine.data(), id: id });
             })
+            .catch(err => {
+                console.error(err);
+            });
     }, [id]);
 
     function editProductHandler(e) {
@@ -31,7 +34,7 @@ function EditProduct({ match }) {
 
         if (!title || !description || !price || !image) {
             return setError('All fields are required!');
-        } 
+        }
 
         if (title.length < 10) {
             return setError('Title should be at least 10 characters!');
@@ -45,6 +48,10 @@ function EditProduct({ match }) {
             .then(() => {
                 history.push(`/wine-catalog/${id}/details`);
             })
+            .catch(err => {
+                console.error(err.message)
+            })
+
     }
 
     return (

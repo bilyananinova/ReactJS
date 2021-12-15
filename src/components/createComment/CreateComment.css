@@ -33,7 +33,7 @@
 }
 
 .commentForm textarea {
-    width: 50em;
+    width: 95%;
 }
 
 .commentForm input[type="submit"] {

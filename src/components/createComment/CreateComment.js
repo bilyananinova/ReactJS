@@ -13,13 +13,12 @@ function Comments({ id }) {
         e.preventDefault();
 
         if (!content) {
-            return setError('Please, write your comment');
+            setError('Please, write your comment');
         } else {
             setError('');
+            createComment(id, user?.name, content, Date.now(), user?.id);
+            e.target.reset();
         }
-
-        createComment(id, user?.name, content, Date.now(), user?.id);
-        e.target.reset();
     }
 
     return (

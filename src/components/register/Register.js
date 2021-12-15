@@ -43,7 +43,7 @@ function Register() {
 
     return (
         <>
-            <h3>Register Page</h3>
+            <h3>Registration Page</h3>
             <section className="form-wrapper">
                 <section className="form-section">
                     {error ? <ErrorMsg error={error} /> : ""}

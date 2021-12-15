@@ -21,7 +21,7 @@ function Login() {
         }
 
         if (password.length < 6) {
-            return setError('Password must be at least 6 characters long!')
+            return setError('Password must be at least 6 characters long!');
         }
 
         login(email, password)
@@ -33,6 +33,7 @@ function Login() {
             .catch(err => {
                 setError(err.message);
             })
+
     }
 
     return (

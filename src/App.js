@@ -5,6 +5,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { auth } from './firebase/firebaseConfig';
 import { logout } from './services/authService';
 import { AuthProvider } from "./contexts/UserContext";
+import AdminRoute from "./components/common/helpers/AdminRoute";
+import PrivateRoute from "./components/common/helpers/PrivateRoute";
 
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -27,6 +29,7 @@ import Details from './components/details/Details';
 import ErrorPage from './components/error/ErrorPage';
 import Cart from './components/cart/Cart';
 
+
 function App() {
   return (
     <AuthProvider >
@@ -39,22 +42,24 @@ function App() {
             <Route path="/" exact component={Home} />
 
             <Route path="/articles" exact component={Blog} />
-            <Route path="/articles/create" component={BlogArticleCreate} />
+            <AdminRoute path="/articles/create" component={BlogArticleCreate} />
             <Route path="/articles/:articleId" exact component={BlogArticle} />
-            <Route path="/articles/:articleId/edit" component={EditArticle} />
+            <AdminRoute path="/articles/:articleId/edit" component={EditArticle} />
 
-            <Route path="/wine-catalog/create" component={ProductCreate} />
-            <Route path="/wine-catalog/:wineId/edit" component={EditProduct} />
+            <Route path="/wine-catalog" exact component={Catalog} />
             <Route path="/wine-catalog/:wineId/details" component={Details} />
-            <Route path="/wine-catalog/:category?" exact component={Catalog} />
+            <AdminRoute path="/wine-catalog/create" component={ProductCreate} />
+            <AdminRoute path="/wine-catalog/:wineId/edit" component={EditProduct} />
 
-            <Route path="/cart" component={Cart} />
+            <PrivateRoute path="/cart" component={Cart} />
+
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/logout" render={() => {
               logout(auth);
               return <Redirect to="/" />
             }} />
+
             <Route component={ErrorPage} />
           </Switch>
         </main>

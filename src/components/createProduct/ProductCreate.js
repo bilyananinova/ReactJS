@@ -23,7 +23,7 @@ function ProductCreate() {
 
     function createProductHandler(e) {
         e.preventDefault();
-        
+
         setError('');
         let title = e.target.title.value;
         let description = e.target.description.value;

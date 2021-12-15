@@ -18,6 +18,9 @@ function BlogArticle({
             .then(article => {
                 setArticle({ ...article.data(), id: id });
             })
+            .catch(err => {
+                console.error(err);
+            });
     }, [id]);
 
     return (
@@ -35,7 +38,7 @@ function BlogArticle({
                 </section>
 
                 {
-                    user.isAdmin
+                    user?.isAdmin
                         ? <AdminBtns article={article} />
                         : ''
                 }

@@ -17,13 +17,16 @@ function Details({ match }) {
     let id = match.params.wineId;
 
     React.useEffect(() => {
-        let controller = new AbortController();
+
         getOne(id)
             .then(wine => {
                 setWine({ ...wine.data(), id: id });
                 setComments(wine.data().comments)
+            })
+            .catch(err => {
+                console.error(err);
             });
-        return () => controller?.abort();
+
     }, [comments, id]);
 
     return (
@@ -44,7 +47,7 @@ function Details({ match }) {
 
                         {user?.isLogged && !user.isAdmin
                             ? <div className="details-action">
-                                <AddButton />
+                                <AddButton wine={wine} userId={user.id}  />
                             </div>
                             : ""}
 

@@ -21,6 +21,9 @@ function Header() {
                 setTotalQty(shoppingCart.reduce((acc, cur) => {
                     return acc += Number(cur.wine?.qty);
                 }, 0));
+            })
+            .catch(err => {
+                console.error(err);
             });
 
     }, [shoppingCart, user?.id]);

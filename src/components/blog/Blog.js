@@ -13,6 +13,9 @@ function Blog() {
             .then(articles => {
                 setArticles(articles);
             })
+            .catch(err => {
+                console.error(err);
+            });
     }, []);
 
     return (
@@ -21,11 +24,14 @@ function Blog() {
             <section className="blog-wrapper">
                 <div className="blog">
 
-                    {articles
-                        .sort((a, b) => b.createdAt - a.createdAt)
-                        .map(a =>
-                            <BlogArticleCard key={a.id} article={a} />
-                        )}
+                    {articles.length > 0
+                        ? articles
+                            .sort((a, b) => b.createdAt - a.createdAt)
+                            .map(a =>
+                                <BlogArticleCard key={a.id} article={a} />
+                            )
+                        : <h1 className="no-content">Sorry, No articles in database...</h1>
+                        }
 
                 </div>
 

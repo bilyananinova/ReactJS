@@ -27,9 +27,12 @@ function Cart() {
         getUserCart(user?.id)
             .then(result => {
                 setShoppingCart(result);
+            })
+            .catch(err => {
+                console.error(err);
             });
 
-    }, [user.id]);
+    }, [shoppingCart, user?.id]);
 
     function productIncrease(wine) {
         updatedWine = wine;
@@ -75,7 +78,7 @@ function Cart() {
                         productIncrease={productIncrease}
                         productDecrease={productDecrease}
                         productDelete={productDelete} />
-                    : <h6>Your shopping cart is empty</h6>
+                    : <h3 className="no-content">Your shopping cart is empty</h3>
                 }
             </section >
             {
