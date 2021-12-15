@@ -22,18 +22,25 @@ function BlogArticleCreate() {
         let createdAt = Date.now();
         let creator = user.id;
 
-        if (!title || !content || !image) {
-            return setError('All fields are required!');
-        }
+        try {
+            if (!title || !content || !image) {
+                throw new Error('All fields are required!');
+            }
 
-        createArticle(title, content, image, createdAt, creator)
-            .then(() => {
-                e.target.reset();
-                history.push('/articles');
-            })
-            .catch(err => {
-                setError(err.message);
-            })
+            createArticle(title, content, image, createdAt, creator)
+                .then(() => {
+                    e.target.reset();
+                    history.push('/articles');
+                })
+                .catch(err => {
+                    setError(err.message);
+                })
+        } catch(err) {
+            setError(err.message);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+        }
     }
 
     return (

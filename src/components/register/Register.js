@@ -18,29 +18,36 @@ function Register() {
         let password = e.target.password.value;
         let rePassword = e.target.rePassword.value;
 
-        if (name === '' || email === '' || password === '') {
-            return setError('All fields are required!');
-        }
+        try {
+            if (name === '' || email === '' || password === '') {
+                throw new Error('All fields are required!');
+            }
 
-        if (password.length < 6) {
-            return setError('Password must be at least 6 characters long!');
-        }
+            if (password.length < 6) {
+                throw new Error('Password must be at least 6 characters long!');
+            }
 
-        if (password !== rePassword) {
-            return setError('Password missmatch!');
-        }
+            if (password !== rePassword) {
+                throw new Error('Password missmatch!');
+            }
 
-        register(name, email, password)
-            .then(user => {
+            register(name, email, password)
+                .then(user => {
+                    setError('');
+                    e.target.reset();
+                    history.push('/');
+                })
+                .catch(error => {
+                    setError(error.message);
+                })
+        } catch (err) {
+            setError(err.message);
+            setTimeout(() => {
                 setError('');
-                e.target.reset();
-                history.push('/');
-            })
-            .catch(error => {
-                setError(error.message);
-            })
+            }, 3000);
+        }
     }
-
+    
     return (
         <>
             <h3>Registration Page</h3>
@@ -66,6 +73,7 @@ function Register() {
             </section>
         </>
     )
+
 }
 
 export default Register;

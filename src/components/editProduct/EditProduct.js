@@ -32,25 +32,32 @@ function EditProduct({ match }) {
         let price = e.target.price.value;
         let image = e.target.image.value;
 
-        if (!title || !description || !price || !image) {
-            return setError('All fields are required!');
-        }
+        try {
+            if (!title || !description || !price || !image) {
+                throw new Error('All fields are required!');
+            }
 
-        if (title.length < 10) {
-            return setError('Title should be at least 10 characters!');
-        }
+            if (title.length < 10) {
+                throw new Error('Title should be at least 10 characters!');
+            }
 
-        if (description.length < 50) {
-            return setError('Description must be at least 50 characters long!');
-        }
+            if (description.length < 50) {
+                throw new Error('Description must be at least 50 characters long!');
+            }
 
-        editWine(id, title, description, price, image)
-            .then(() => {
-                history.push(`/wine-catalog/${id}/details`);
-            })
-            .catch(err => {
-                console.error(err.message)
-            })
+            editWine(id, title, description, price, image)
+                .then(() => {
+                    history.push(`/wine-catalog/${id}/details`);
+                })
+                .catch(err => {
+                    console.error(err.message)
+                })
+        } catch (err) {
+            setError(err.message);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+        }
 
     }
 

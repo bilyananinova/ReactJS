@@ -26,7 +26,7 @@ function Header() {
                 console.error(err);
             });
 
-    }, [shoppingCart, user?.id]);
+    }, [shoppingCart, user]);
 
 
     return (

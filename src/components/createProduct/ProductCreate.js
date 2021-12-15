@@ -33,26 +33,34 @@ function ProductCreate() {
         let createdAt = Date.now();
         let creator = user?.id;
 
-        if (!title || !description || !price || !image) {
-            return setError('All fields are required!');
-        }
+        try {
 
-        if (title.length < 10) {
-            return setError('Title should be at least 10 characters!');
-        }
+            if (!title || !description || !price || !image) {
+                throw new Error('All fields are required!');
+            }
 
-        if (description.length < 50) {
-            return setError('Description must be at least 50 characters long!');
-        }
+            if (title.length < 10) {
+                throw new Error('Title should be at least 10 characters!');
+            }
 
-        createWine(title, description, price, category, image, createdAt, creator)
-            .then(() => {
-                e.target.reset();
-                history.push('/wine-catalog');
-            })
-            .catch(err => {
-                setError(err.message);
-            })
+            if (description.length < 50) {
+                throw new Error('Description must be at least 50 characters long!');
+            }
+
+            createWine(title, description, price, category, image, createdAt, creator)
+                .then(() => {
+                    e.target.reset();
+                    history.push('/wine-catalog');
+                })
+                .catch(err => {
+                    setError(err.message);
+                })
+        } catch (err) {
+            setError(err.message);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+        }
     }
 
     return (

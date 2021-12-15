@@ -16,24 +16,31 @@ function Login() {
         let email = e.target.email.value;
         let password = e.target.password.value;
 
-        if (email === '' || password === '') {
-            return setError('All fields are required!');
-        }
+        try {
+            if (email === '' || password === '') {
+                throw new Error('All fields are required!');
+            }
 
-        if (password.length < 6) {
-            return setError('Password must be at least 6 characters long!');
-        }
+            if (password.length < 6) {
+                throw new Error('Password must be at least 6 characters long!');
+            }
 
-        login(email, password)
-            .then(user => {
+            login(email, password)
+                .then(user => {
+                    setError('');
+                    e.target.reset();
+                    history.push('/');
+                })
+                .catch(err => {
+                    setError(err.message);
+                })
+
+        } catch (err) {
+            setError(err.message);
+            setTimeout(() => {
                 setError('');
-                e.target.reset();
-                history.push('/');
-            })
-            .catch(err => {
-                setError(err.message);
-            })
-
+            }, 3000);
+        }
     }
 
     return (

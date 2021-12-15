@@ -32,17 +32,24 @@ function EditArticle({ match }) {
         let content = e.target.content.value;
         let image = e.target.image.value;
 
-        if (!title || !content || !image) {
-            throw new Error('All fields are required!');
-        }
+        try {
+            if (!title || !content || !image) {
+                throw new Error('All fields are required!');
+            }
 
-        editArticle(id, title, content, image)
-            .then(() => {
-                history.push(`/articles/${id}`);
-            })
-            .catch(err => {
-                console.error(err.message)
-            });
+            editArticle(id, title, content, image)
+                .then(() => {
+                    history.push(`/articles/${id}`);
+                })
+                .catch(err => {
+                    console.error(err.message);
+                });
+        } catch (err) {
+            setError(err.message);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+        }
     }
 
     return (
