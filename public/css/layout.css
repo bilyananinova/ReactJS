@@ -68,3 +68,7 @@ li {
     text-align: center;
     margin: auto;
 }
+
+.no-content a {
+    color: #9D0552;
+}

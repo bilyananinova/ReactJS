@@ -9,6 +9,8 @@ function Home() {
     let [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
+        let abortController = new AbortController();
+        
         lastArticles()
             .then(result => {
                 setArticles(result);
@@ -17,6 +19,11 @@ function Home() {
                 console.error(err);
             });
 
+            return () => {
+                abortController.abort();
+                console.log('aborting... home');
+            }
+    
     }, []);
 
     return (

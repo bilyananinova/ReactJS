@@ -49,7 +49,7 @@ function ProductCreate() {
 
             createWine(title, description, price, category, image, createdAt, creator)
                 .then(() => {
-                    e.target.reset();
+                    // e.target.reset();
                     history.push('/wine-catalog');
                 })
                 .catch(err => {

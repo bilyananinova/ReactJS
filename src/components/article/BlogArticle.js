@@ -14,6 +14,8 @@ function BlogArticle({
     let id = match.params.articleId;
 
     React.useEffect(() => {
+        let abortController = new AbortController();
+
         getOneArticle(id)
             .then(article => {
                 setArticle({ ...article.data(), id: id });
@@ -21,6 +23,11 @@ function BlogArticle({
             .catch(err => {
                 console.error(err);
             });
+
+        return () => {
+            abortController.abort();
+            console.log('aborting... article');
+        }
     }, [id]);
 
     return (

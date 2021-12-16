@@ -13,6 +13,8 @@ import Footer from './components/common/Footer';
 
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import Cart from './components/cart/Cart';
+import UserPage from './components/user/UserPage';
 
 import Home from './components/home/Home';
 
@@ -27,7 +29,6 @@ import EditProduct from './components/editProduct/EditProduct';
 import Details from './components/details/Details';
 
 import ErrorPage from './components/error/ErrorPage';
-import Cart from './components/cart/Cart';
 
 
 function App() {
@@ -51,8 +52,8 @@ function App() {
             <AdminRoute path="/wine-catalog/create" component={ProductCreate} />
             <AdminRoute path="/wine-catalog/:wineId/edit" component={EditProduct} />
 
+            <PrivateRoute path="/user/:userId" component={UserPage} />
             <PrivateRoute path="/cart" component={Cart} />
-
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/logout" render={() => {

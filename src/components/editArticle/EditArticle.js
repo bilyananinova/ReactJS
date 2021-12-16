@@ -13,6 +13,7 @@ function EditArticle({ match }) {
     let id = match.params.articleId;
 
     React.useEffect(() => {
+        let abortController = new AbortController();
 
         getOneArticle(id)
             .then(article => {
@@ -21,6 +22,11 @@ function EditArticle({ match }) {
             .catch(err => {
                 console.error(err);
             });
+
+        return () => {
+            abortController.abort();
+            console.log('aborting... edit articles');
+        }
 
     }, [id]);
 

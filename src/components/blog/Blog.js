@@ -9,6 +9,8 @@ function Blog() {
     let [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
+        let abortController = new AbortController();
+
         getAllArticles()
             .then(articles => {
                 setArticles(articles);
@@ -16,6 +18,11 @@ function Blog() {
             .catch(err => {
                 console.error(err);
             });
+
+        return () => {
+            abortController.abort();
+            console.log('aborting... blog');
+        }
     }, []);
 
     return (
@@ -31,7 +38,7 @@ function Blog() {
                                 <BlogArticleCard key={a.id} article={a} />
                             )
                         : <h1 className="no-content">Sorry, No articles in database...</h1>
-                        }
+                    }
 
                 </div>
 

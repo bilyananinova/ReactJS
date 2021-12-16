@@ -5,28 +5,28 @@ let winesRef = collection(db, 'wines');
 
 function getAllWines(setWines) {
 
-    return getDocs(winesRef)
-        .then((snapshot) => {
-            let wines = [];
-            snapshot.docs.forEach((doc) => {
-                wines.push({ ...doc.data(), id: doc.id })
-            });
+    // return getDocs(winesRef)
+    //     .then((snapshot) => {
+    //         let wines = [];
+    //         snapshot.docs.forEach((doc) => {
+    //             wines.push({ ...doc.data(), id: doc.id })
+    //         });
 
-            return wines;
-        })
-        .catch(err => {
-            console.error(err);
-            throw err;
-        });
-
-    // onSnapshot(winesRef, (snapshot) => {
-    //     let wines = [];
-    //     snapshot.docs.forEach((doc) => {
-    //         wines.push({ ...doc.data(), id: doc.id })
+    //         return wines;
+    //     })
+    //     .catch(err => {
+    //         console.error(err);
+    //         throw err;
     //     });
 
-    //     return setWines(wines)
-    // });
+    onSnapshot(winesRef, (snapshot) => {
+        let wines = [];
+        snapshot.docs.forEach((doc) => {
+            wines.push({ ...doc.data(), id: doc.id })
+        });
+
+        return setWines(wines)
+    });
 }
 
 function getOne(id) {

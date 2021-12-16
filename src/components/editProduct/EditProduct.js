@@ -13,6 +13,7 @@ function EditProduct({ match }) {
     let id = match.params.wineId;
 
     React.useEffect(() => {
+        let abortController = new AbortController();
 
         getOne(id)
             .then(wine => {
@@ -21,6 +22,12 @@ function EditProduct({ match }) {
             .catch(err => {
                 console.error(err);
             });
+
+        return () => {
+            abortController.abort();
+            console.log('aborting... edit product');
+        }
+
     }, [id]);
 
     function editProductHandler(e) {

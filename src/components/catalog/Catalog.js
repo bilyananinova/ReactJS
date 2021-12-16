@@ -5,40 +5,47 @@ import { getAllWines } from "../../services/winesServices";
 
 import CatalogProductCart from "./CatalogProductCard";
 
-let categories = [
-    { key: 'red', text: 'Red Wines' },
-    { key: 'white', text: 'White Wines' },
-    { key: 'rosé', text: 'Rosé Wines' },
-    { key: 'sparkling', text: 'Sparkling Wines' },
-    { key: 'dessert', text: 'Dessert Wines' },
-    { key: 'fortified', text: 'Fortified Wines' },
-]
+// let categories = [
+//     { key: 'red', text: 'Red Wines' },
+//     { key: 'white', text: 'White Wines' },
+//     { key: 'rosé', text: 'Rosé Wines' },
+//     { key: 'sparkling', text: 'Sparkling Wines' },
+//     { key: 'dessert', text: 'Dessert Wines' },
+//     { key: 'fortified', text: 'Fortified Wines' },
+// ]
 
 function Catalog() {
     let [wines, setWines] = React.useState([]);
     // let [category, setCategory] = React.useState('');
 
     React.useEffect(() => {
+        let abortController = new AbortController();
 
-        getAllWines()
-            .then(wines => {
-                // if (!category || category === 'all') {
-                //     wines = wines;
-                // } else if (category !== 'all') {
-                //     wines = wines.filter(w => w.category.toLowerCase() === category.toLowerCase());
-                // }
-                setWines(wines);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        getAllWines(setWines)
+        // .then(wines => {
+        // if (!category || category === 'all') {
+        //     wines = wines;
+        // } else if (category !== 'all') {
+        //     wines = wines.filter(w => w.category.toLowerCase() === category.toLowerCase());
+        // }
+        // if (wines) {
+        //     setWines(wines);
+        // }
+        // })
+        // .catch(err => {
+        //     console.error(err);
+        // });
 
-    }, [wines]);
+        return () => {
+            abortController.abort();
+            console.log('aborting... catalog');
+        }
+    }, []);
 
     return (
 
         <>
-            {<h3>Our Wines</h3>}
+            <h3>Our Wines</h3>
             <section className="products-wrapper">
                 {/* <aside className="products-aside">
                     <h6>Product categories</h6>

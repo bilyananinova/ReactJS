@@ -23,6 +23,7 @@ function Cart() {
     }, 0);
 
     React.useEffect(() => {
+        let abortController = new AbortController();
 
         getUserCart(user?.id)
             .then(result => {
@@ -31,6 +32,11 @@ function Cart() {
             .catch(err => {
                 console.error(err);
             });
+
+        return () => {
+            abortController.abort();
+            console.log('aborting... cart');
+        }
 
     }, [shoppingCart, user?.id]);
 
