@@ -16,29 +16,31 @@ let categories = [
 
 function Catalog() {
     let [wines, setWines] = React.useState([]);
-    let [category, setCategory] = React.useState('');
+    // let [category, setCategory] = React.useState('');
 
     React.useEffect(() => {
 
         getAllWines()
             .then(wines => {
-                if (category) {
-                    wines = wines.filter(w => w.category.toLowerCase() === category.toLowerCase());
-                }
+                // if (!category || category === 'all') {
+                //     wines = wines;
+                // } else if (category !== 'all') {
+                //     wines = wines.filter(w => w.category.toLowerCase() === category.toLowerCase());
+                // }
                 setWines(wines);
             })
             .catch(err => {
                 console.error(err);
             });
 
-    }, [category, wines]);
+    }, [wines]);
 
     return (
 
         <>
             {<h3>Our Wines</h3>}
             <section className="products-wrapper">
-                <aside className="products-aside">
+                {/* <aside className="products-aside">
                     <h6>Product categories</h6>
                     <ul>
                         {categories.map(c => <li key={c.key}
@@ -46,7 +48,7 @@ function Catalog() {
                             {c.text}
                         </li>)}
                     </ul>
-                </aside>
+                </aside> */}
                 <section className="products-list">
 
                     {wines.length > 0
@@ -55,8 +57,7 @@ function Catalog() {
                             .map(w =>
                                 <CatalogProductCart
                                     key={w.id}
-                                    wine={w} >
-                                </CatalogProductCart>
+                                    wine={w} />
                             )
                         : <h1 className="no-content">Sorry, No wines in database...</h1>
                     }

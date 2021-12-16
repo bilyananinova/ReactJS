@@ -1,0 +1,50 @@
+.home-wine {
+    width: 20em;
+    height: auto;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.9);
+    color: black;
+    background-color: #ffffff;  
+    /* animation: zoom-in 3s ease-in-out; */
+}
+
+/* @keyframes zoom-in {
+    0% {
+    transform: scale(0);
+    }
+    50% {
+    transform: scale(1.1);
+    }
+    100% {
+    transform: scale(1);
+    }
+} */
+
+.home-wine-image {
+    position: relative;
+    width: 100%;
+    margin: 0.5em auto;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.home-wine-image::before {
+    display: block;
+    content: '';
+    padding-top: 66.66%;
+}
+
+.home-wine-image img {
+    display: block;
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.home-wine h6 {
+    margin: 1em 0 0.5em;
+}

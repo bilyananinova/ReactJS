@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, getDoc, addDoc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDocs, getDoc, addDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
 let winesRef = collection(db, 'wines');
@@ -25,7 +25,7 @@ function getAllWines(setWines) {
     //         wines.push({ ...doc.data(), id: doc.id })
     //     });
 
-    //     setWines(wines)
+    //     return setWines(wines)
     // });
 }
 
@@ -69,10 +69,28 @@ function deleteWine(wineId) {
     return deleteDoc(wineRef);
 }
 
+function lastWines() {
+    let params = query(winesRef, orderBy('createdAt', 'desc'), limit(3))
+    return getDocs(params)
+        .then((snapshot) => {
+            let lastWines = [];
+            snapshot.docs.forEach((doc) => {
+                lastWines.push({ ...doc.data(), id: doc.id })
+            });
+
+            return lastWines;
+        })
+        .catch(err => {
+            console.error(err);
+            throw err;
+        });
+}
+
 export {
     getAllWines,
     getOne,
     createWine,
     editWine,
-    deleteWine
+    deleteWine,
+    lastWines
 }
