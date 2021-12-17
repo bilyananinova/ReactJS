@@ -1,3 +1,59 @@
+# react-wine-store
+
+The client side is a single page app, dynamically updating with React, using JSX, React JS and Firebase. The application consists of users, products and orders. Each user can register, login and logout. Users can also view each products details and make orders. Admins can add, edit and delete entries.
+
+## Functionality
+
+User Login:
+ - login in the application via email and password
+
+User Register:
+ - register a new user via email, username and password
+
+User Logout:
+ - Logouts from the application
+
+## Not Register user can:
+- see the store
+- register
+- product details
+- read articles
+
+## An register user can:
+- order
+- see product details
+- comment products
+- like products
+- see "my likes"
+
+## An admin user can:
+- create new offer
+- edit product
+- delete product
+
+## Home:
+- List of products last 3 wines
+
+## Details:
+ - product details. Each user can comment the product
+
+## Cart:
+ - Users add product to the card
+ - Users select quantity of the chosen product
+ - Users have option to remove product from the cart or change the quantity
+ 
+Product add:
+ - Admin route only
+ - Create a new entry and save it to the database
+
+Product edit:
+ - Admin route only
+ - Edit an existing entry and save it to the database
+
+Product delete:
+ - Admin route only
+ - Remove an entry from the database
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
