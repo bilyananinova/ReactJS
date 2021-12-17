@@ -37,7 +37,7 @@ function Blog() {
                             .map(a =>
                                 <BlogArticleCard key={a.id} article={a} />
                             )
-                        : <h1 className="no-content">Sorry, No articles in database...</h1>
+                        : <h1 className="no-content">Loading...</h1>
                     }
 
                 </div>

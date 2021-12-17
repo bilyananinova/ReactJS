@@ -66,7 +66,7 @@ function Catalog() {
                                     key={w.id}
                                     wine={w} />
                             )
-                        : <h1 className="no-content">Sorry, No wines in database...</h1>
+                        : <h1 className="no-content">Loading...</h1>
                     }
 
                 </section>

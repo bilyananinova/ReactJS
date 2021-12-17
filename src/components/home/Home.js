@@ -36,7 +36,7 @@ function Home() {
                         ? articles.map(article =>
                             <HomeArticleCard key={article.id} article={article} />
                         )
-                        : <h1 className="no-content">Sorry, No articles in database...</h1>
+                        : <h1 className="no-content">Loading...</h1>
                     }
 
                 </section>
