@@ -1,3 +1,5 @@
+live demo: https://wine-store-bb07d.web.app/
+
 # react-wine-store
 
 The client side is a single page app, dynamically updating with React, using JSX, React JS and Firebase. The application consists of users, products and orders. Each user can register, login and logout. Users can also view each products details and make orders. Admins can add, edit and delete entries.
